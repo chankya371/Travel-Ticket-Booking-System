@@ -1,0 +1,863 @@
+/* ==========================================================================
+   BOOKING & SEARCH STYLESHEET (booking.css)
+   Search results, filters sidebar, transport cards, visual seat layout,
+   passenger checkout, and simulated payment.
+   ========================================================================== */
+
+/* Search Results Header Bar */
+.search-summary-bar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.25rem 0;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 72px;
+  z-index: 100;
+}
+
+.search-summary-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-route-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.route-cities {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.route-cities .arrow-icon {
+  color: var(--primary);
+}
+
+.route-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.route-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Search Layout Grid */
+.search-page-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  padding: 2.5rem 0 5rem;
+}
+
+/* Sidebar Filters */
+.filters-sidebar {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 160px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+}
+
+.filters-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.reset-filters-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.filter-group-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-check-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-check-item input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.filter-check-item .count {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* Departure Time Slots Grid */
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.time-slot-btn {
+  border: 1px solid var(--border-color);
+  background: var(--bg-page);
+  border-radius: var(--radius-sm);
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.time-slot-btn:hover {
+  border-color: var(--secondary);
+  background: #ffffff;
+}
+
+.time-slot-btn.active {
+  background: var(--secondary-light);
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.time-slot-btn .slot-icon {
+  font-size: 1.1rem;
+}
+
+.time-slot-btn .slot-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.time-slot-btn .slot-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Price Range Slider */
+.price-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.price-slider {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.price-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Search Results Main Area */
+.search-results-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.results-sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.results-count-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.sort-options-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-options-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.sort-select {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* Transport Cards */
+.transport-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.transport-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 132, 255, 0.4);
+}
+
+.transport-card-main {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 3fr 1.6fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.transport-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.transport-header-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.transport-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.transport-category {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.transport-rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+/* Schedule / Timeline Column */
+.transport-schedule-col {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.time-point {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-point .time {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.time-point .city {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.journey-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.journey-duration {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.timeline-line {
+  width: 100%;
+  height: 2px;
+  background: var(--border-color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-line::after {
+  content: "→";
+  position: absolute;
+  font-size: 14px;
+  color: var(--secondary);
+  background: #ffffff;
+  padding: 0 4px;
+}
+
+/* Price & Action Column */
+.transport-action-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  border-left: 1px dashed var(--border-color);
+  padding-left: 1.5rem;
+}
+
+.fare-box {
+  text-align: right;
+}
+
+.fare-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.fare-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.seats-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.seats-badge.low {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+/* Transport Card Footer */
+.transport-card-footer {
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  padding: 10px 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.amenities-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.amenity-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   SEAT SELECTION STYLES
+   ========================================================================== */
+.seat-selection-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  padding: 2.5rem 0 5rem;
+}
+
+.seat-selection-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Seat Map Legend */
+.seat-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.legend-sample {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.legend-sample.available {
+  background: #ecfdf5;
+  border-color: #10b981;
+}
+
+.legend-sample.selected {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.legend-sample.booked {
+  background: #cbd5e1;
+  border-color: #94a3b8;
+}
+
+/* Vehicle Bus / Coach Chassis */
+.vehicle-chassis {
+  max-width: 520px;
+  margin: 0 auto;
+  border: 2px solid var(--border-color);
+  border-radius: 36px 36px 16px 16px;
+  padding: 2rem 1.5rem;
+  background: #fdfdfd;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.chassis-front {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px dashed var(--border-color);
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.steering-wheel-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.steering-wheel-icon::after {
+  content: "";
+  width: 14px;
+  height: 3px;
+  background: var(--text-muted);
+}
+
+/* Seat Grid Container */
+.seat-deck-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.seat-pair {
+  display: flex;
+  gap: 10px;
+}
+
+.seat-aisle {
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Individual Seat Button */
+.seat-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  border: 1.5px solid #10b981;
+  color: #065f46;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  user-select: none;
+}
+
+.seat-btn:hover:not(.booked) {
+  transform: scale(1.08);
+  border-color: var(--secondary);
+  background: var(--secondary-light);
+  color: var(--secondary);
+}
+
+.seat-btn.selected {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 132, 255, 0.4);
+}
+
+.seat-btn.booked {
+  background: #cbd5e1;
+  border-color: #94a3b8;
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.seat-btn.sleeper {
+  width: 50px;
+  height: 72px;
+}
+
+/* Seat Booking Sidebar Summary */
+.seat-summary-sidebar {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  height: fit-content;
+  position: sticky;
+  top: 160px;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.selected-seats-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  min-height: 38px;
+}
+
+.selected-chip {
+  background: var(--secondary-light);
+  border: 1px solid rgba(0, 132, 255, 0.3);
+  color: var(--secondary);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.fare-breakdown-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding: 12px 0;
+  border-top: 1px dashed var(--border-color);
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.9rem;
+}
+
+.fare-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+}
+
+.fare-row.total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.fare-row.total .amount {
+  color: var(--primary);
+}
+
+/* ==========================================================================
+   CHECKOUT & PAYMENT STYLES
+   ========================================================================== */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  padding: 2.5rem 0 5rem;
+}
+
+.passenger-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.passenger-card-header {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.passenger-inputs-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 12px;
+}
+
+/* Payment Method Selection */
+.payment-tabs-container {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.payment-nav-tabs {
+  display: flex;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.payment-tab-item {
+  flex: 1;
+  padding: 12px 14px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.payment-tab-item.active {
+  color: var(--secondary);
+  background: #ffffff;
+  border-bottom-color: var(--secondary);
+}
+
+.payment-tab-panel {
+  padding: 1.75rem;
+  display: none;
+}
+
+.payment-tab-panel.active {
+  display: block;
+}
+
+.qr-payment-box {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.qr-code-canvas-box {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 1rem;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upi-apps-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Coupon Box */
+.coupon-box {
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.coupon-input {
+  flex-grow: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* Simulated Payment Loader Overlay */
+.payment-processing-modal {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.payment-spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Booking */
+@media (max-width: 992px) {
+  .search-page-layout, 
+  .seat-selection-layout, 
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+  .filters-sidebar, .seat-summary-sidebar {
+    position: static;
+  }
+  .transport-card-main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .transport-action-col {
+    border-left: none;
+    border-top: 1px dashed var(--border-color);
+    padding-left: 0;
+    padding-top: 1rem;
+    align-items: flex-start;
+  }
+}

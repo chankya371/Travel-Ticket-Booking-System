@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Payment - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Header Bar -->
+  <div class="search-summary-bar">
+    <div class="container search-summary-content">
+      <div>
+        <h2 id="summaryTransportName" style="font-size: 1.3rem; font-weight: 800; color: var(--dark);">Transport Details</h2>
+        <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
+          <span id="summaryRoute" style="font-weight: 700; color: var(--text-main);">Route</span>
+          <span>•</span>
+          <span id="summaryDate" style="color: var(--secondary); font-weight: 700;">Date</span>
+          <span>•</span>
+          <span id="summaryTime">Time</span>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-success">Seats Locked</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Checkout Container -->
+  <main class="container">
+    <form id="bookingForm" class="checkout-layout">
+      <!-- Left Column: Passenger & Contact Info + Payment Tabs -->
+      <section>
+        <!-- Passenger Details Section -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem;">
+            Passenger Information
+          </h3>
+          <div id="passengerFormsContainer">
+            <!-- Dynamically populated by js/booking.js per seat -->
+          </div>
+        </div>
+
+        <!-- Primary Contact Information -->
+        <div class="passenger-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem;">
+            Contact Details (For E-Ticket & SMS)
+          </h3>
+          <div class="passenger-inputs-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+            <div class="form-group">
+              <label>Contact Person Name *</label>
+              <input type="text" id="contactName" placeholder="Primary traveler" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="contactEmail" placeholder="e-ticket will be sent here" required>
+            </div>
+            <div class="form-group">
+              <label>Mobile Number (10 digits) *</label>
+              <input type="tel" id="contactPhone" placeholder="9876543210" maxlength="10" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem;">
+            Select Payment Method
+          </h3>
+
+          <div class="payment-tabs-container">
+            <div class="payment-nav-tabs">
+              <div class="payment-tab-item active" data-target="panelUpi" data-method="UPI (Demo QR)">
+                📱 Demo UPI / QR
+              </div>
+              <div class="payment-tab-item" data-target="panelCard" data-method="Credit / Debit Card">
+                💳 Credit / Debit Card
+              </div>
+              <div class="payment-tab-item" data-target="panelCash" data-method="Cash on Boarding">
+                💵 Pay at Boarding
+              </div>
+            </div>
+
+            <!-- UPI Panel -->
+            <div class="payment-tab-panel active" id="panelUpi">
+              <div class="qr-payment-box">
+                <div class="qr-code-canvas-box">
+                  <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+                    <rect x="5" y="5" width="26" height="26" fill="#0f172a" rx="3"/>
+                    <rect x="9" y="9" width="18" height="18" fill="#ffffff" rx="2"/>
+                    <rect x="13" y="13" width="10" height="10" fill="#0f172a" rx="1"/>
+
+                    <rect x="69" y="5" width="26" height="26" fill="#0f172a" rx="3"/>
+                    <rect x="73" y="9" width="18" height="18" fill="#ffffff" rx="2"/>
+                    <rect x="77" y="13" width="10" height="10" fill="#0f172a" rx="1"/>
+
+                    <rect x="5" y="69" width="26" height="26" fill="#0f172a" rx="3"/>
+                    <rect x="9" y="73" width="18" height="18" fill="#ffffff" rx="2"/>
+                    <rect x="13" y="77" width="10" height="10" fill="#0f172a" rx="1"/>
+
+                    <rect x="36" y="10" width="8" height="8" fill="#0077ed"/>
+                    <rect x="48" y="14" width="12" height="6" fill="#0f172a"/>
+                    <rect x="36" y="36" width="28" height="28" fill="#e52b50" rx="4"/>
+                    <rect x="42" y="42" width="16" height="16" fill="#ffffff" rx="2"/>
+                    <rect x="46" y="46" width="8" height="8" fill="#0077ed" rx="1"/>
+                  </svg>
+                </div>
+                <div style="font-weight: 700; color: var(--dark); font-size: 1rem;">
+                  Scan QR with any UPI App
+                </div>
+                <div class="upi-apps-row">
+                  <span>Google Pay</span> • <span>PhonePe</span> • <span>Paytm</span> • <span>BHIM</span>
+                </div>
+                <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                  Or enter Virtual Payment Address (VPA):
+                </div>
+                <input 
+                  type="text" 
+                  placeholder="e.g. yourname@okhdfcbank" 
+                  style="max-width: 320px; margin: 8px auto 0; padding: 8px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); width: 100%; display: block;"
+                >
+              </div>
+            </div>
+
+            <!-- Card Panel -->
+            <div class="payment-tab-panel" id="panelCard">
+              <div style="max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+                <div class="form-group">
+                  <label>Card Number</label>
+                  <input type="text" placeholder="4111 •••• •••• 1111" value="4111 2222 3333 4444" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div class="form-group">
+                    <label>Expiry Date</label>
+                    <input type="text" placeholder="MM/YY" value="12/28" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                  </div>
+                  <div class="form-group">
+                    <label>CVV</label>
+                    <input type="password" placeholder="123" maxlength="3" value="789" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Name on Card</label>
+                  <input type="text" placeholder="Cardholder Name" value="Rahul Sharma" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);">
+                </div>
+              </div>
+            </div>
+
+            <!-- Cash Panel -->
+            <div class="payment-tab-panel" id="panelCash">
+              <div style="text-align: center; padding: 2rem 1rem;">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">💵</div>
+                <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-bottom: 6px;">
+                  Pay in Cash Directly to Driver / Conductor
+                </h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 400px; margin: 0 auto;">
+                  Your seats will be reserved immediately. Please carry the exact amount in cash during boarding.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Fare & Coupon Summary -->
+      <aside>
+        <div class="seat-summary-sidebar">
+          <h3 class="sidebar-title">Fare Summary</h3>
+
+          <!-- Fare Table -->
+          <div class="fare-breakdown-table">
+            <div class="fare-row">
+              <span>Base Fare</span>
+              <span id="checkoutBaseFare">₹0</span>
+            </div>
+            <div class="fare-row">
+              <span>GST & Taxes (5%)</span>
+              <span id="checkoutTax">₹0</span>
+            </div>
+            <div class="fare-row" style="color: #10b981; font-weight: 700;">
+              <span>Promo Discount</span>
+              <span id="checkoutDiscount">-₹0</span>
+            </div>
+            <div class="fare-row total">
+              <span>Total Payable</span>
+              <span class="amount" id="checkoutTotalAmount">₹0</span>
+            </div>
+          </div>
+
+          <!-- Coupon Code Input -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+              Have a Promo Code?
+            </label>
+            <div class="coupon-box">
+              <input type="text" id="couponCodeInput" class="coupon-input" placeholder="TRAVEL50 or FIRSTBOOK">
+              <button type="button" class="btn btn-outline btn-sm" id="applyCouponBtn">Apply</button>
+            </div>
+            <div id="couponMessage" style="font-size: 0.8rem; margin-top: 6px; font-weight: 600;"></div>
+          </div>
+
+          <!-- Pay & Confirm Button -->
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="payAndConfirmBtn">
+            Pay & Confirm Booking (<span id="payBtnAmount">₹0</span>)
+          </button>
+
+          <div style="margin-top: 1.25rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+            🔒 256-bit SSL Simulated Secure Payment
+          </div>
+        </div>
+      </aside>
+    </form>
+  </main>
+
+  <!-- Simulated Payment Processing Modal -->
+  <div class="modal-backdrop" id="paymentModal">
+    <div class="modal-window" style="max-width: 440px;">
+      <div class="modal-body" id="paymentModalContent">
+        <!-- Rendered by js/booking.js with spinner & checkmark -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

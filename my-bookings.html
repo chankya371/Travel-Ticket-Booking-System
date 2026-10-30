@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link active">My Bookings</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section style="background: linear-gradient(135deg, #0b1a30 0%, #173459 100%); color: #ffffff; padding: 3rem 0;">
+    <div class="container">
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 6px;">My Travel Bookings</h1>
+      <p style="color: #cbd5e1; font-size: 1.05rem;">
+        View, download, print, or cancel your bus and train reservations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Bookings Container -->
+  <main class="container" style="padding: 3rem 1.5rem 5rem;">
+    <!-- Filter Tabs -->
+    <div style="display: flex; gap: 12px; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+      <button type="button" class="search-tab-btn active" id="tabFilterAll" onclick="filterBookings('all')">
+        All Bookings (<span id="countAll">0</span>)
+      </button>
+      <button type="button" class="search-tab-btn" id="tabFilterConfirmed" onclick="filterBookings('Confirmed')">
+        Confirmed (<span id="countConfirmed">0</span>)
+      </button>
+      <button type="button" class="search-tab-btn" id="tabFilterCancelled" onclick="filterBookings('Cancelled')">
+        Cancelled (<span id="countCancelled">0</span>)
+      </button>
+    </div>
+
+    <!-- Bookings Cards List -->
+    <div id="myBookingsList" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <!-- Populated dynamically by script below -->
+    </div>
+  </main>
+
+  <!-- Cancel Confirmation Modal -->
+  <div class="modal-backdrop" id="cancelConfirmModal">
+    <div class="modal-window" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 style="color: var(--danger);">Cancel Ticket</h3>
+        <button class="modal-close-btn" onclick="closeModal('cancelConfirmModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 1rem; color: var(--dark); margin-bottom: 1rem;">
+          Are you sure you want to cancel booking <strong id="cancelModalBookingId">TRV-XXXXXX</strong>?
+        </p>
+        <div style="background: var(--bg-page); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+          • Seats will be restored to open availability for other travelers.<br>
+          • A simulated 100% refund of <strong id="cancelModalAmount" style="color: var(--dark);">₹0</strong> will be credited to your original payment mode.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('cancelConfirmModal')">Keep Ticket</button>
+        <button type="button" class="btn btn-danger btn-sm" id="confirmCancelActionBtn">Yes, Cancel Booking</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    let userBookings = [];
+    let currentFilter = "all";
+    let bookingToCancel = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadUserBookings();
+    });
+
+    function loadUserBookings() {
+      const currentUser = Auth.getUser();
+
+      if (!currentUser) {
+        const container = document.getElementById("myBookingsList");
+        if (container) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">🔒</div>
+              <h3>Sign In Required</h3>
+              <p>Please sign in to your account to view and manage your travel bookings.</p>
+              <div style="display: flex; gap: 12px; justify-content: center; margin-top: 1rem;">
+                <a href="login.html?redirect=my-bookings.html" class="btn btn-primary">Sign In</a>
+                <a href="register.html?redirect=my-bookings.html" class="btn btn-outline">Create Account</a>
+              </div>
+            </div>
+          `;
+        }
+        document.getElementById("countAll").textContent = 0;
+        document.getElementById("countConfirmed").textContent = 0;
+        document.getElementById("countCancelled").textContent = 0;
+        return;
+      }
+
+      userBookings = Storage.getUserBookings(currentUser.id, currentUser.email);
+
+      // Update counters
+      const total = userBookings.length;
+      const confirmed = userBookings.filter(b => b.bookingStatus === "Confirmed").length;
+      const cancelled = userBookings.filter(b => b.bookingStatus === "Cancelled").length;
+
+      document.getElementById("countAll").textContent = total;
+      document.getElementById("countConfirmed").textContent = confirmed;
+      document.getElementById("countCancelled").textContent = cancelled;
+
+      renderBookings();
+    }
+
+    function filterBookings(status) {
+      currentFilter = status;
+
+      document.querySelectorAll(".search-tab-btn").forEach(btn => btn.classList.remove("active"));
+      if (status === "all") document.getElementById("tabFilterAll").classList.add("active");
+      if (status === "Confirmed") document.getElementById("tabFilterConfirmed").classList.add("active");
+      if (status === "Cancelled") document.getElementById("tabFilterCancelled").classList.add("active");
+
+      renderBookings();
+    }
+
+    function renderBookings() {
+      const container = document.getElementById("myBookingsList");
+      if (!container) return;
+
+      const filtered = userBookings.filter(b => {
+        if (currentFilter === "all") return true;
+        return b.bookingStatus === currentFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🎫</div>
+            <h3>No Bookings Found</h3>
+            <p>You have no ${currentFilter === 'all' ? '' : currentFilter.toLowerCase()} ticket bookings recorded yet.</p>
+            <a href="search.html" class="btn btn-primary">Search & Book Tickets</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(b => {
+        const isConfirmed = b.bookingStatus === "Confirmed";
+        const statusBadge = isConfirmed
+          ? `<span class="badge badge-success">CONFIRMED</span>`
+          : `<span class="badge badge-danger">CANCELLED</span>`;
+
+        const typeBadge = b.transportType === "bus"
+          ? `<span class="badge badge-primary">BUS</span>`
+          : `<span class="badge badge-secondary">TRAIN</span>`;
+
+        const passengersList = (b.passengers || []).map(p => `${p.name} (${p.seat})`).join(", ");
+
+        const formattedDate = new Date(b.journeyDate + "T00:00:00").toLocaleDateString("en-IN", {
+          weekday: "short", day: "numeric", month: "short", year: "numeric"
+        });
+
+        return `
+          <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Top Row -->
+            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                ${typeBadge}
+                <span style="font-weight: 800; font-family: monospace; font-size: 1.1rem; color: var(--dark);">${b.id}</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Booked for: <strong>${b.userName}</strong></span>
+              </div>
+              <div>${statusBadge}</div>
+            </div>
+
+            <!-- Route & Transport Specs -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 1.5rem; align-items: center;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 4px;">
+                  ${b.transportName}
+                </h3>
+                <div style="font-size: 0.95rem; font-weight: 700; color: var(--secondary);">
+                  ${b.source} ➔ ${b.destination}
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+                  📅 Journey Date: <strong>${formattedDate}</strong> (${b.departureTime || 'TBD'})
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Seats</div>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px;">
+                  ${(b.seats || []).map(s => `<span class="badge badge-secondary">${s}</span>`).join("")}
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                  Passengers: ${passengersList}
+                </div>
+              </div>
+
+              <div style="text-align: right; border-left: 1px dashed var(--border-color); padding-left: 1.5rem;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Total Paid</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">₹${b.finalAmount}</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">via ${b.paymentMethod}</div>
+              </div>
+            </div>
+
+            <!-- Card Actions -->
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 12px; margin-top: 4px;">
+              <a href="ticket.html?id=${b.id}" class="btn btn-outline btn-sm">
+                👁️ View E-Ticket
+              </a>
+              <button type="button" class="btn btn-outline btn-sm" onclick="window.open('ticket.html?id=${b.id}', '_blank')">
+                🖨️ Print Ticket
+              </button>
+              ${isConfirmed ? `
+                <button type="button" class="btn btn-danger btn-sm" onclick="promptCancelTicket('${b.id}', ${b.finalAmount})">
+                  ✕ Cancel Ticket
+                </button>
+              ` : `
+                <span style="font-size: 0.85rem; color: var(--danger); font-style: italic;">Ticket Cancelled & Seats Restored</span>
+              `}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function promptCancelTicket(bookingId, amount) {
+      bookingToCancel = bookingId;
+      document.getElementById("cancelModalBookingId").textContent = bookingId;
+      document.getElementById("cancelModalAmount").textContent = `₹${amount}`;
+      openModal("cancelConfirmModal");
+    }
+
+    document.getElementById("confirmCancelActionBtn").addEventListener("click", () => {
+      if (!bookingToCancel) return;
+
+      const cancelled = Storage.cancelBooking(bookingToCancel);
+      closeModal("cancelConfirmModal");
+
+      if (cancelled) {
+        showToast(`Booking ${bookingToCancel} cancelled. Seats are now available for booking again!`, "success", 4500);
+        loadUserBookings();
+      } else {
+        showToast("Error cancelling booking.", "error");
+      }
+    });
+  </script>
+</body>
+</html>

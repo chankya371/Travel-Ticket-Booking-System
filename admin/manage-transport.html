@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Transport - Admin Portal</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="logo-icon" style="width:36px; height:36px; font-size:1.1rem; border-radius:8px; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center;">🚌</div>
+        <div>
+          <div class="logo-text">TravelEase</div>
+          <span class="admin-tag">Admin Panel</span>
+        </div>
+      </div>
+
+      <ul class="admin-nav-list">
+        <li>
+          <a href="dashboard.html" class="admin-nav-item">
+            <span class="icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="manage-transport.html" class="admin-nav-item active">
+            <span class="icon">🚌</span>
+            <span>Manage Transport</span>
+          </a>
+        </li>
+        <li>
+          <a href="manage-bookings.html" class="admin-nav-item">
+            <span class="icon">🎫</span>
+            <span>Manage Bookings</span>
+          </a>
+        </li>
+        <li>
+          <a href="manage-users.html" class="admin-nav-item">
+            <span class="icon">👥</span>
+            <span>Manage Users</span>
+          </a>
+        </li>
+        <li>
+          <a href="payments.html" class="admin-nav-item">
+            <span class="icon">💳</span>
+            <span>Payments</span>
+          </a>
+        </li>
+        <li>
+          <a href="reports.html" class="admin-nav-item">
+            <span class="icon">📈</span>
+            <span>Reports & Analytics</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="admin-sidebar-footer">
+        <a href="../index.html" target="_blank">
+          <span>🌐</span> View Public Site
+        </a>
+        <a href="#" onclick="Admin.logout(); return false;" style="color: var(--danger);">
+          <span>🚪</span> Logout Admin
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar-title">
+          <h1>Transport Fleet Management</h1>
+        </div>
+        <div class="admin-topbar-actions">
+          <button type="button" class="btn btn-primary btn-sm" onclick="Admin.openAddTransport()">
+            ➕ Add New Transport
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-body">
+        <div class="admin-table-card">
+          <!-- Toolbar -->
+          <div class="table-toolbar">
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+              <input 
+                type="text" 
+                id="transportSearchInput" 
+                class="table-search-input" 
+                placeholder="Search by name, source, destination..."
+              >
+              <select id="transportTypeFilter" class="table-filter-select">
+                <option value="all">All Vehicle Types</option>
+                <option value="bus">Buses Only</option>
+                <option value="train">Trains Only</option>
+              </select>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              Manage schedules, pricing, and seat quotas.
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Transport Name</th>
+                  <th>Type</th>
+                  <th>Route</th>
+                  <th>Timings</th>
+                  <th>Fare</th>
+                  <th>Capacity</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="transportsTableBody">
+                <!-- Dynamically populated by js/admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Transport Modal -->
+  <div class="modal-backdrop" id="transportModal">
+    <div class="modal-window" style="max-width: 620px;">
+      <div class="modal-header">
+        <h3 id="transportModalTitle">Add New Transport</h3>
+        <button class="modal-close-btn" onclick="closeModal('transportModal')">✕</button>
+      </div>
+
+      <form id="transportForm">
+        <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+          <input type="hidden" id="transportEditId">
+
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>Transport Name *</label>
+              <input type="text" id="transportNameInput" placeholder="e.g. NueGo Electric AC" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+            <div class="form-group">
+              <label>Vehicle Type *</label>
+              <select id="transportTypeSelect" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; background:#fff;">
+                <option value="bus">Bus</option>
+                <option value="train">Train</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Category / Class *</label>
+            <input type="text" id="transportCategoryInput" placeholder="e.g. Volvo Multi-Axle AC Sleeper (2+1)" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>Source City *</label>
+              <input type="text" id="transportSourceInput" placeholder="e.g. Delhi" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+            <div class="form-group">
+              <label>Destination City *</label>
+              <input type="text" id="transportDestInput" placeholder="e.g. Shimla" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>Departure Time *</label>
+              <input type="time" id="transportDepTime" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+            <div class="form-group">
+              <label>Arrival Time *</label>
+              <input type="time" id="transportArrTime" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+            <div class="form-group">
+              <label>Duration *</label>
+              <input type="text" id="transportDuration" placeholder="e.g. 8h 15m" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label>Ticket Price (₹) *</label>
+              <input type="number" id="transportPrice" placeholder="950" min="50" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+            <div class="form-group">
+              <label>Total Seats Capacity *</label>
+              <input type="number" id="transportSeats" placeholder="32" min="10" max="80" required style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('transportModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Transport</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      Admin.initManageTransport();
+    });
+  </script>
+</body>
+</html>

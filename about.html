@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero-section" style="padding: 4rem 0 5rem;">
+    <div class="container hero-content">
+      <div class="hero-badge">OUR MISSION & STORY</div>
+      <h1 class="hero-title">
+        Connecting Millions with <span class="gradient-text">Reliable Journeys</span>
+      </h1>
+      <p class="hero-subtitle">
+        Founded with the vision to make Indian travel seamless, transparent, and accessible to everyone through cutting-edge web technology.
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Metrics Strip -->
+  <section class="features-strip">
+    <div class="container features-strip-grid" style="text-align: center;">
+      <div>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--primary);">500,000+</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600;">Happy Travelers</p>
+      </div>
+      <div>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--secondary);">1,200+</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600;">Buses & Trains</p>
+      </div>
+      <div>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--success);">120+</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600;">Cities Connected</p>
+      </div>
+      <div>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--warning);">99.4%</div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600;">Punctuality Rate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section">
+    <div class="container" style="max-width: 960px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div>
+          <span class="sub-badge">Who We Are</span>
+          <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--dark); margin: 8px 0 16px;">
+            A Modern Platform for Modern Travelers
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 1rem;">
+            TravelEase is designed to solve the common pain points of public transport ticketing: confusing seat arrangements, hidden fees, and rigid cancellation policies.
+          </p>
+          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
+            By giving passengers an interactive seat visualizer, verified amenities tags, and instant simulated booking confirmations, we make planning intercity journeys as delightful as the vacation itself.
+          </p>
+        </div>
+        <div class="card" style="padding: 2.5rem; background: #ffffff; border-radius: var(--radius-lg); border-left: 6px solid var(--secondary);">
+          <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--dark); margin-bottom: 12px;">Our Core Values</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-main); font-size: 0.95rem;">
+            <li>✓ <strong>Absolute Transparency:</strong> Real prices with no hidden charges.</li>
+            <li>✓ <strong>Passenger Safety:</strong> Strict hygiene, CCTV, and verified operators.</li>
+            <li>✓ <strong>Speed & Simplicity:</strong> Book in under 60 seconds with instant e-tickets.</li>
+            <li>✓ <strong>Flexibility:</strong> 1-click cancellation with immediate seat release.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

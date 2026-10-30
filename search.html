@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Tickets - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Search Summary Bar -->
+  <div class="search-summary-bar">
+    <div class="container search-summary-content">
+      <div class="search-route-badge">
+        <div class="route-cities">
+          <span id="summarySource">Delhi</span>
+          <span class="arrow-icon">➔</span>
+          <span id="summaryDest">Shimla</span>
+        </div>
+        <div class="route-meta">
+          <span>📅 <strong id="summaryDate">Tomorrow</strong></span>
+          <span>•</span>
+          <span class="badge badge-secondary" id="summaryType">ALL TRANSPORTS</span>
+        </div>
+      </div>
+
+      <!-- Quick Modify Form Trigger -->
+      <button class="btn btn-outline btn-sm" onclick="toggleModifySearch()">
+        ✏️ Modify Route / Date
+      </button>
+    </div>
+
+    <!-- Inline Modify Drawer -->
+    <div id="modifySearchDrawer" class="container" style="display: none; padding-top: 1rem; border-top: 1px solid var(--border-color); margin-top: 1rem;">
+      <form action="search.html" method="GET" class="search-form-grid" style="grid-template-columns: 2fr 2fr 1.6fr 1.4fr 1.6fr; gap: 10px;">
+        <div class="search-input-group">
+          <label>From</label>
+          <input type="text" name="source" id="sourceInput" list="indianCitiesList" required>
+        </div>
+        <div class="search-input-group">
+          <label>To</label>
+          <input type="text" name="destination" id="destInput" list="indianCitiesList" required>
+        </div>
+        <div class="search-input-group">
+          <label>Date</label>
+          <input type="date" name="date" id="dateInput" required>
+        </div>
+        <div class="search-input-group">
+          <label>Transport</label>
+          <select name="type">
+            <option value="all">All (Bus & Train)</option>
+            <option value="bus">Bus Only</option>
+            <option value="train">Train Only</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="height: 52px;">
+          Update
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <datalist id="indianCitiesList"></datalist>
+
+  <!-- Main Search Results & Filter Layout -->
+  <div class="container">
+    <div class="search-page-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filters-sidebar">
+        <div class="filters-header">
+          <h3>Filters</h3>
+          <button type="button" class="reset-filters-btn" id="resetFiltersBtn">Reset All</button>
+        </div>
+
+        <!-- Price Range Slider -->
+        <div class="filter-group">
+          <div class="filter-group-title">
+            <span>Max Price</span>
+            <span id="maxPriceLabel" style="color: var(--primary); font-weight: 800;">₹2000</span>
+          </div>
+          <div class="price-slider-container">
+            <input 
+              type="range" 
+              id="priceSlider" 
+              class="price-slider" 
+              min="200" 
+              max="2000" 
+              step="50" 
+              value="2000"
+            >
+            <div class="price-range-labels">
+              <span>₹200</span>
+              <span>₹2000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transport Type Filter -->
+        <div class="filter-group">
+          <div class="filter-group-title">Transport Type</div>
+          <div class="filter-checkboxes">
+            <label class="filter-check-item">
+              <span style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="filterBus" class="type-filter-checkbox" checked>
+                <span>🚌 Buses</span>
+              </span>
+            </label>
+            <label class="filter-check-item">
+              <span style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="filterTrain" class="type-filter-checkbox" checked>
+                <span>🚆 Trains</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Departure Time Slots -->
+        <div class="filter-group">
+          <div class="filter-group-title">Departure Time</div>
+          <div class="time-slots-grid">
+            <button type="button" class="time-slot-btn" data-slot="morning">
+              <span class="slot-icon">🌅</span>
+              <span class="slot-label">Morning</span>
+              <span class="slot-time">06:00 - 12:00</span>
+            </button>
+            <button type="button" class="time-slot-btn" data-slot="afternoon">
+              <span class="slot-icon">☀️</span>
+              <span class="slot-label">Afternoon</span>
+              <span class="slot-time">12:00 - 18:00</span>
+            </button>
+            <button type="button" class="time-slot-btn" data-slot="evening">
+              <span class="slot-icon">🌆</span>
+              <span class="slot-label">Evening</span>
+              <span class="slot-time">18:00 - 23:00</span>
+            </button>
+            <button type="button" class="time-slot-btn" data-slot="night">
+              <span class="slot-icon">🌙</span>
+              <span class="slot-label">Night</span>
+              <span class="slot-time">23:00 - 06:00</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Results Column -->
+      <main class="search-results-wrapper">
+        <!-- Sort & Count Bar -->
+        <div class="results-sort-bar">
+          <div class="results-count-text" id="resultsCountBadge">Loading options...</div>
+          <div class="sort-options-group">
+            <label for="sortSelect">Sort By:</label>
+            <select id="sortSelect" class="sort-select">
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Top Rated</option>
+              <option value="time-asc">Departure: Earliest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic Results Container -->
+        <div id="searchResultsContainer" class="search-results-list" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Transport cards injected by js/search.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/search.js"></script>
+
+  <script>
+    function toggleModifySearch() {
+      const drawer = document.getElementById("modifySearchDrawer");
+      drawer.style.display = drawer.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</body>
+</html>

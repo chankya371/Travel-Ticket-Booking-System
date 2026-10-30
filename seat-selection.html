@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Seats - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Route Summary Bar -->
+  <div class="search-summary-bar">
+    <div class="container search-summary-content">
+      <div>
+        <h2 id="transportName" style="font-size: 1.35rem; font-weight: 800; color: var(--dark);">Loading Transport...</h2>
+        <div style="display: flex; gap: 10px; align-items: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;">
+          <span id="transportCategory">Luxury AC</span>
+          <span>•</span>
+          <span id="transportRoute" style="font-weight: 700; color: var(--text-main);">Route</span>
+          <span>•</span>
+          <span id="journeyDateDisplay" style="color: var(--secondary); font-weight: 700;">Date</span>
+        </div>
+      </div>
+      <div>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Base Fare: </span>
+        <strong id="seatBaseFare" style="font-size: 1.3rem; color: var(--primary);">₹0</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seat Selection Interactive Canvas -->
+  <main class="container">
+    <div class="seat-selection-layout">
+      <!-- Seat Map Side -->
+      <section class="seat-selection-card">
+        <!-- Legend -->
+        <div class="seat-legend">
+          <div class="legend-item">
+            <div class="legend-sample available"></div>
+            <span>Available</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-sample selected"></div>
+            <span>Selected</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-sample booked"></div>
+            <span>Booked / Occupied</span>
+          </div>
+        </div>
+
+        <!-- Vehicle Body Frame -->
+        <div class="vehicle-chassis">
+          <!-- Front Driver Area -->
+          <div class="chassis-front">
+            <span>DRIVER CABIN</span>
+            <div class="steering-wheel-icon" title="Steering Wheel"></div>
+          </div>
+
+          <!-- Dynamic Seats Deck -->
+          <div class="seat-deck-container" id="seatDeckContainer">
+            <!-- Seats rendered by js/seats.js -->
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+          ℹ️ Click on any green seat to select. You can select up to 6 seats per transaction.
+        </div>
+      </section>
+
+      <!-- Sidebar Summary Sticky Box -->
+      <aside class="seat-summary-sidebar">
+        <h3 class="sidebar-title">Booking Summary</h3>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 6px;">
+            SELECTED SEATS (<span id="selectedSeatsCount">0</span>/6):
+          </div>
+          <div class="selected-seats-chips" id="selectedSeatsChips">
+            <span style="font-size: 0.85rem; color: #94a3b8; font-style: italic;">No seats selected yet.</span>
+          </div>
+        </div>
+
+        <!-- Fare Breakdown -->
+        <div class="fare-breakdown-table">
+          <div class="fare-row">
+            <span>Base Fare</span>
+            <span id="summaryBaseFare">₹0</span>
+          </div>
+          <div class="fare-row">
+            <span>GST & Service Tax (5%)</span>
+            <span id="summaryTax">₹0</span>
+          </div>
+          <div class="fare-row total">
+            <span>Total Payable</span>
+            <span class="amount" id="summaryGrandTotal">₹0</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block btn-lg" id="proceedToBookingBtn" disabled>
+          Select Seats to Continue
+        </button>
+
+        <div style="margin-top: 1.25rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+          🔒 Free instant seat hold for 10 minutes.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/seats.js"></script>
+</body>
+</html>

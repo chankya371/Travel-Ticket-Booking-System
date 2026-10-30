@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline btn-sm">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Split Auth Screen -->
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <!-- Visual Banner Side -->
+      <div class="auth-banner">
+        <div class="auth-banner-content">
+          <span class="auth-banner-tag">JOIN TRAVELEASE</span>
+          <h2 class="auth-banner-title">
+            Travel Smarter Across <span>India.</span>
+          </h2>
+          <p class="auth-banner-desc">
+            Register for a free account to unlock faster checkouts, saved passenger profiles, special discounts, and instant cancellation refunds.
+          </p>
+        </div>
+
+        <ul class="auth-perks-list">
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>Manage All Bookings in One Dashboard</span>
+          </li>
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>Exclusive Promo Codes (e.g. TRAVEL50)</span>
+          </li>
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>24/7 Verified Customer Support</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Registration Form Side -->
+      <div class="auth-form-side">
+        <div class="auth-header">
+          <h2>Create Account</h2>
+          <p>Fill in the details below to register</p>
+        </div>
+
+        <form id="registerForm" class="auth-form" novalidate>
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="regName">Full Name *</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">👤</span>
+              <input 
+                type="text" 
+                id="regName" 
+                placeholder="e.g. Rahul Sharma" 
+                required
+                autocomplete="name"
+              >
+            </div>
+            <span class="form-error-msg" id="nameError">Name must be at least 3 characters.</span>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="regEmail">Email Address *</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">✉️</span>
+              <input 
+                type="email" 
+                id="regEmail" 
+                placeholder="rahul@example.com" 
+                required
+                autocomplete="email"
+              >
+            </div>
+            <span class="form-error-msg" id="emailError">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Mobile Number -->
+          <div class="form-group">
+            <label for="regPhone">Mobile Number (10 digits) *</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">📱</span>
+              <input 
+                type="tel" 
+                id="regPhone" 
+                placeholder="9876543210" 
+                maxlength="10" 
+                required
+              >
+            </div>
+            <span class="form-error-msg" id="phoneError">Please enter a valid 10-digit mobile number.</span>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="regPassword">Create Password *</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">🔒</span>
+              <input 
+                type="password" 
+                id="regPassword" 
+                placeholder="Minimum 6 characters" 
+                required
+              >
+            </div>
+            <span class="form-error-msg" id="passwordError">Password must be at least 6 characters.</span>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label for="regConfirmPassword">Confirm Password *</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">🔒</span>
+              <input 
+                type="password" 
+                id="regConfirmPassword" 
+                placeholder="Re-enter password" 
+                required
+              >
+            </div>
+            <span class="form-error-msg" id="confirmPasswordError">Passwords do not match.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            Create Free Account
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <a href="login.html">Sign in here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    const form = document.getElementById("registerForm");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const phone = document.getElementById("regPhone").value.trim();
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword = document.getElementById("regConfirmPassword").value;
+
+      // Reset errors
+      document.querySelectorAll(".form-error-msg").forEach(el => el.classList.remove("visible"));
+
+      let hasError = false;
+
+      if (name.length < 3) {
+        document.getElementById("nameError").classList.add("visible");
+        hasError = true;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById("emailError").classList.add("visible");
+        hasError = true;
+      }
+
+      const cleanPhone = phone.replace(/[^0-9]/g, "");
+      if (cleanPhone.length !== 10) {
+        document.getElementById("phoneError").classList.add("visible");
+        hasError = true;
+      }
+
+      if (password.length < 6) {
+        document.getElementById("passwordError").classList.add("visible");
+        hasError = true;
+      }
+
+      if (password !== confirmPassword) {
+        document.getElementById("confirmPasswordError").classList.add("visible");
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      const res = Auth.register(name, email, phone, password, confirmPassword);
+
+      if (res.success) {
+        showToast(res.message, "success");
+        setTimeout(() => {
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectUrl = urlParams.get("redirect");
+          const checkout = sessionStorage.getItem("tb_currentCheckout");
+
+          if (redirectUrl) {
+            window.location.href = redirectUrl;
+          } else if (checkout) {
+            window.location.href = "booking.html";
+          } else {
+            window.location.href = "my-bookings.html";
+          }
+        }, 1200);
+      } else {
+        showToast(res.message, "error");
+      }
+    });
+
+    // Carry over redirect parameter to login link if present
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get("redirect");
+      if (redirectUrl) {
+        const loginLink = document.querySelector(".auth-footer a");
+        if (loginLink) loginLink.href = `login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+        const topLoginBtn = document.querySelector(".nav-actions .btn");
+        if (topLoginBtn) topLoginBtn.href = `login.html?redirect=${encodeURIComponent(redirectUrl)}`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* ==========================================================================
+   E-TICKET / BOARDING PASS STYLESHEET (ticket.css)
+   Professional pass with tear notches, QR code, and print optimization
+   ========================================================================== */
+
+.ticket-page-wrapper {
+  padding: 3rem 1.25rem 5rem;
+  background: #f1f5f9;
+  min-height: calc(100vh - 72px);
+}
+
+.ticket-actions-bar {
+  max-width: 820px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-container {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ticket Header */
+.ticket-header {
+  background: linear-gradient(135deg, #0b1a30 0%, #173459 100%);
+  color: #ffffff;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--primary);
+}
+
+.ticket-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ticket-id-badge {
+  text-align: right;
+}
+
+.ticket-id-badge .label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ticket-id-badge .id-num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+/* Route & Time Banner */
+.ticket-route-banner {
+  background: #f8fafc;
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.route-stop {
+  display: flex;
+  flex-direction: column;
+}
+
+.route-stop.destination {
+  text-align: right;
+}
+
+.route-stop .city-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.route-stop .point-name {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.route-stop .time-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-top: 4px;
+}
+
+.route-stop .date-val {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.route-flight-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 140px;
+}
+
+.route-flight-path .duration {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.flight-path-line {
+  width: 100%;
+  height: 2px;
+  background: var(--border-color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flight-path-line::after {
+  content: "✈";
+  position: absolute;
+  color: var(--secondary);
+  background: #f8fafc;
+  padding: 0 6px;
+  font-size: 14px;
+}
+
+/* Perforated Notches */
+.ticket-perforation {
+  position: relative;
+  height: 24px;
+  background: #ffffff;
+  border-top: 1px dashed var(--border-color);
+  margin-top: -1px;
+}
+
+.ticket-perforation::before,
+.ticket-perforation::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-perforation::before {
+  left: -12px;
+}
+
+.ticket-perforation::after {
+  right: -12px;
+}
+
+/* Ticket Details Grid */
+.ticket-details-body {
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.passenger-manifest-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.passenger-manifest-table th {
+  background: #f8fafc;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.passenger-manifest-table td {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.manifest-seat-badge {
+  background: var(--secondary-light);
+  color: var(--secondary);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 800;
+}
+
+/* QR and Barcode Box */
+.ticket-validation-box {
+  border-left: 1px dashed var(--border-color);
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ticket-qr-frame {
+  width: 130px;
+  height: 130px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.ticket-qr-frame svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ticket-status-pill {
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+}
+
+.ticket-status-pill.confirmed {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.ticket-status-pill.cancelled {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* Fare & Info Footer */
+.ticket-footer-strip {
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket-policy-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.4;
+}
+
+.ticket-total-fare-box {
+  text-align: right;
+}
+
+.ticket-total-fare-box .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.ticket-total-fare-box .amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Print Media Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  .navbar, .footer, .ticket-actions-bar, .toast-container {
+    display: none !important;
+  }
+  .ticket-page-wrapper {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  .ticket-container {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  .ticket-header {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ticket-perforation::before,
+  .ticket-perforation::after {
+    display: none !important;
+  }
+}

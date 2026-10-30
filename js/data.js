@@ -1,0 +1,507 @@
+/**
+ * Travel Ticket Booking System - Seed Data
+ * Realistic Indian routes, buses, trains, and initial sample records.
+ */
+
+const SEED_DATA = {
+  cities: [
+    "Delhi",
+    "Chandigarh",
+    "Shimla",
+    "Bilaspur",
+    "Manali",
+    "Mumbai",
+    "Jaipur",
+    "Agra",
+    "Dehradun",
+    "Pune",
+    "Amritsar",
+    "Haridwar"
+  ],
+
+  admin: {
+    name: "System Administrator",
+    email: "admin@gmail.com",
+    password: "admin123",
+    role: "admin"
+  },
+
+  initialUsers: [
+    {
+      id: "USR-101",
+      name: "Rahul Sharma",
+      email: "rahul@gmail.com",
+      phone: "9876543210",
+      password: "password123",
+      createdAt: "2026-02-15"
+    },
+    {
+      id: "USR-102",
+      name: "Pooja Verma",
+      email: "pooja@gmail.com",
+      phone: "9812345678",
+      password: "password123",
+      createdAt: "2026-03-01"
+    },
+    {
+      id: "USR-103",
+      name: "Amit Patel",
+      email: "amit@gmail.com",
+      phone: "9988776655",
+      password: "password123",
+      createdAt: "2026-03-20"
+    }
+  ],
+
+  transports: [
+    // BUSES
+    {
+      id: "BUS-101",
+      name: "IntrCity SmartBus Volvo A/C",
+      type: "bus",
+      category: "Volvo Multi-Axle A/C Sleeper (2+1)",
+      source: "Delhi",
+      destination: "Shimla",
+      departureTime: "21:30",
+      arrivalTime: "05:45",
+      duration: "8h 15m",
+      price: 950,
+      totalSeats: 30,
+      rating: 4.8,
+      reviewsCount: 342,
+      operator: "IntrCity",
+      amenities: ["Free WiFi", "Water Bottle", "Charging Point", "Blanket", "Live Tracking"],
+      boardingPoints: ["Kashmere Gate ISBT", "Majnu Ka Tilla", "Rohini Sec 14"],
+      droppingPoints: ["Shimla ISBT Tutikandi", "Victory Tunnel", "Old Bus Stand"]
+    },
+    {
+      id: "BUS-102",
+      name: "Zingbus Electric Max AC Seater",
+      type: "bus",
+      category: "Electric Luxury AC Seater (2+2)",
+      source: "Delhi",
+      destination: "Chandigarh",
+      departureTime: "06:00",
+      arrivalTime: "10:30",
+      duration: "4h 30m",
+      price: 520,
+      totalSeats: 36,
+      rating: 4.7,
+      reviewsCount: 520,
+      operator: "Zingbus",
+      amenities: ["Free WiFi", "Charging Point", "Air Purifier", "Reading Light"],
+      boardingPoints: ["Kashmere Gate ISBT", "Dhaula Kuan", "Singhu Border"],
+      droppingPoints: ["Sector 43 ISBT", "Tribune Chowk", "Zirakpur"]
+    },
+    {
+      id: "BUS-103",
+      name: "HRTC Himsuta Super Luxury Volvo",
+      type: "bus",
+      category: "Scania AC Multi-Axle (2+2)",
+      source: "Chandigarh",
+      destination: "Shimla",
+      departureTime: "07:30",
+      arrivalTime: "11:15",
+      duration: "3h 45m",
+      price: 430,
+      totalSeats: 32,
+      rating: 4.6,
+      reviewsCount: 198,
+      operator: "HRTC Himachal",
+      amenities: ["Emergency Exit", "Water Bottle", "Reclining Seats", "First Aid"],
+      boardingPoints: ["Sector 43 ISBT", "Panchkula Housing Board"],
+      droppingPoints: ["ISBT Tutikandi Shimla", "Shimla Bypass"]
+    },
+    {
+      id: "BUS-104",
+      name: "Laxmi Holidays Volvo Sleeper",
+      type: "bus",
+      category: "Luxury AC Sleeper (2+1)",
+      source: "Delhi",
+      destination: "Manali",
+      departureTime: "18:45",
+      arrivalTime: "08:30",
+      duration: "13h 45m",
+      price: 1350,
+      totalSeats: 30,
+      rating: 4.9,
+      reviewsCount: 890,
+      operator: "Laxmi Holidays",
+      amenities: ["Free WiFi", "Blanket", "Charging Point", "Water Bottle", "Movie Screen"],
+      boardingPoints: ["Majnu Ka Tilla", "Kashmere Gate", "Murthal Haveli"],
+      droppingPoints: ["Private Bus Stand Manali", "Mall Road Entrance"]
+    },
+    {
+      id: "BUS-105",
+      name: "Himachal Roadways Deluxe",
+      type: "bus",
+      category: "Semi-Deluxe 2+2 Non-AC",
+      source: "Bilaspur",
+      destination: "Shimla",
+      departureTime: "08:15",
+      arrivalTime: "11:30",
+      duration: "3h 15m",
+      price: 190,
+      totalSeats: 36,
+      rating: 4.2,
+      reviewsCount: 87,
+      operator: "HRTC",
+      amenities: ["Emergency Exit", "Luggage Storage", "First Aid"],
+      boardingPoints: ["Bilaspur Main Bus Stand", "Ghumarwin Chowk"],
+      droppingPoints: ["Shimla Old Bus Stand", "ISBT Tutikandi"]
+    },
+    {
+      id: "BUS-106",
+      name: "RSRTC Royal Goldline AC",
+      type: "bus",
+      category: "Volvo Multi-Axle 2+2 AC",
+      source: "Delhi",
+      destination: "Jaipur",
+      departureTime: "14:00",
+      arrivalTime: "19:15",
+      duration: "5h 15m",
+      price: 680,
+      totalSeats: 36,
+      rating: 4.5,
+      reviewsCount: 310,
+      operator: "RSRTC",
+      amenities: ["Free WiFi", "Water Bottle", "Charging Point", "Snacks"],
+      boardingPoints: ["Bikaner House", "Dhaula Kuan", "IFFCO Chowk Gurgaon"],
+      droppingPoints: ["Sindhi Camp Jaipur", "Narayan Singh Circle"]
+    },
+    {
+      id: "BUS-107",
+      name: "Neeta Travels Luxury Sleeper",
+      type: "bus",
+      category: "Mercedes Multi-Axle Sleeper (2+1)",
+      source: "Mumbai",
+      destination: "Pune",
+      departureTime: "16:00",
+      arrivalTime: "19:30",
+      duration: "3h 30m",
+      price: 450,
+      totalSeats: 30,
+      rating: 4.6,
+      reviewsCount: 654,
+      operator: "Neeta Travels",
+      amenities: ["Charging Point", "Water Bottle", "CCTV", "Blanket"],
+      boardingPoints: ["Dadar TT Circle", "Vashi Plaza", "Chembur"],
+      droppingPoints: ["Wakad", "Shivaji Nagar", "Swargate Pune"]
+    },
+    {
+      id: "BUS-108",
+      name: "NueGo Premium Electric AC",
+      type: "bus",
+      category: "Quiet Eco Electric AC (2+2)",
+      source: "Delhi",
+      destination: "Agra",
+      departureTime: "07:00",
+      arrivalTime: "10:45",
+      duration: "3h 45m",
+      price: 499,
+      totalSeats: 36,
+      rating: 4.8,
+      reviewsCount: 412,
+      operator: "NueGo",
+      amenities: ["CCTV", "Free WiFi", "Charging Point", "Live Tracking"],
+      boardingPoints: ["Sarai Kale Khan ISBT", "Yamuna Expressway Toll"],
+      droppingPoints: ["Idgah Bus Stand Agra", "Fatehabad Road"]
+    },
+
+    // TRAINS
+    {
+      id: "TRN-201",
+      name: "Vande Bharat Express (22447)",
+      type: "train",
+      category: "Chair Car / Executive CC (Semi-High Speed)",
+      source: "Delhi",
+      destination: "Chandigarh",
+      departureTime: "05:50",
+      arrivalTime: "08:45",
+      duration: "2h 55m",
+      price: 945,
+      totalSeats: 54,
+      rating: 4.9,
+      reviewsCount: 1420,
+      operator: "Indian Railways",
+      amenities: ["High-speed WiFi", "Hot Meals Included", "Bio-Vacuum Toilet", "Rotating Seats", "CCTV"],
+      boardingPoints: ["New Delhi Railway Station (NDLS)"],
+      droppingPoints: ["Chandigarh Junction (CDG)"]
+    },
+    {
+      id: "TRN-202",
+      name: "Kalka Shatabdi Express (12005)",
+      type: "train",
+      category: "AC Chair Car (CC)",
+      source: "Delhi",
+      destination: "Chandigarh",
+      departureTime: "17:15",
+      arrivalTime: "20:30",
+      duration: "3h 15m",
+      price: 780,
+      totalSeats: 60,
+      rating: 4.7,
+      reviewsCount: 980,
+      operator: "Northern Railway",
+      amenities: ["Complimentary Snack/Meal", "Charging Socket", "Clean Linen", "Newspaper"],
+      boardingPoints: ["New Delhi Railway Station (NDLS)"],
+      droppingPoints: ["Chandigarh Junction (CDG)"]
+    },
+    {
+      id: "TRN-203",
+      name: "Himalayan Queen Toy Train (52455)",
+      type: "train",
+      category: "Heritage UNESCO Narrow Gauge",
+      source: "Chandigarh",
+      destination: "Shimla",
+      departureTime: "12:10",
+      arrivalTime: "17:30",
+      duration: "5h 20m",
+      price: 360,
+      totalSeats: 40,
+      rating: 4.9,
+      reviewsCount: 2150,
+      operator: "Northern Railway",
+      amenities: ["Panoramic Windows", "Scenic Valley Views", "First Aid Kit"],
+      boardingPoints: ["Kalka Railway Station (KLK)"],
+      droppingPoints: ["Shimla Railway Station (SML)"]
+    },
+    {
+      id: "TRN-204",
+      name: "Ajmer Shatabdi Express (12015)",
+      type: "train",
+      category: "AC Chair Car (CC)",
+      source: "Delhi",
+      destination: "Jaipur",
+      departureTime: "06:10",
+      arrivalTime: "10:40",
+      duration: "4h 30m",
+      price: 825,
+      totalSeats: 54,
+      rating: 4.8,
+      reviewsCount: 760,
+      operator: "North Western Railway",
+      amenities: ["Complimentary Breakfast", "Tea/Coffee", "Charging Sockets", "CCTV"],
+      boardingPoints: ["New Delhi Railway Station (NDLS)", "Delhi Cantt"],
+      droppingPoints: ["Jaipur Junction (JP)", "Gandhinagar Jaipur"]
+    },
+    {
+      id: "TRN-205",
+      name: "Mumbai Tejas Express (82902)",
+      type: "train",
+      category: "Executive & AC Chair Car",
+      source: "Mumbai",
+      destination: "Pune",
+      departureTime: "06:45",
+      arrivalTime: "09:55",
+      duration: "3h 10m",
+      price: 640,
+      totalSeats: 54,
+      rating: 4.7,
+      reviewsCount: 512,
+      operator: "IRCTC",
+      amenities: ["Personal LCD Screen", "Celebrity Chef Meals", "Attendant Call Button", "Free WiFi"],
+      boardingPoints: ["Chhatrapati Shivaji Maharaj Terminus (CSMT)", "Dadar"],
+      droppingPoints: ["Pune Junction (PUNE)"]
+    },
+    {
+      id: "TRN-206",
+      name: "Gatimaan Express (12050)",
+      type: "train",
+      category: "AC Chair Car (Fastest Track)",
+      source: "Delhi",
+      destination: "Agra",
+      departureTime: "08:10",
+      arrivalTime: "09:50",
+      duration: "1h 40m",
+      price: 755,
+      totalSeats: 60,
+      rating: 4.9,
+      reviewsCount: 1640,
+      operator: "Northern Railway",
+      amenities: ["Continental/Indian Meal", "Train Hostesses", "Multimedia WiFi", "Bio-Toilets"],
+      boardingPoints: ["Hazrat Nizamuddin (NZM)"],
+      droppingPoints: ["Agra Cantt (AGC)"]
+    },
+    {
+      id: "TRN-207",
+      name: "Dehradun Jan Shatabdi (12055)",
+      type: "train",
+      category: "AC Chair Car & 2S",
+      source: "Delhi",
+      destination: "Dehradun",
+      departureTime: "15:20",
+      arrivalTime: "21:10",
+      duration: "5h 50m",
+      price: 545,
+      totalSeats: 60,
+      rating: 4.6,
+      reviewsCount: 420,
+      operator: "Northern Railway",
+      amenities: ["Pantry Service", "Charging Sockets", "Clean Restrooms"],
+      boardingPoints: ["New Delhi Railway Station (NDLS)", "Ghaziabad"],
+      droppingPoints: ["Haridwar Junction", "Dehradun Terminal (DDN)"]
+    }
+  ],
+
+  popularRoutes: [
+    {
+      from: "Delhi",
+      to: "Shimla",
+      type: "Bus & Train",
+      fare: "₹430 onwards",
+      time: "8 hrs",
+      image: "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      from: "Delhi",
+      to: "Chandigarh",
+      type: "Vande Bharat & Bus",
+      fare: "₹520 onwards",
+      time: "2h 55m",
+      image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      from: "Delhi",
+      to: "Manali",
+      type: "Volvo Sleeper",
+      fare: "₹1,350 onwards",
+      time: "13 hrs",
+      image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      from: "Delhi",
+      to: "Jaipur",
+      type: "Shatabdi & Volvo",
+      fare: "₹680 onwards",
+      time: "4h 30m",
+      image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      from: "Bilaspur",
+      to: "Shimla",
+      type: "Himachal Deluxe",
+      fare: "₹190 onwards",
+      time: "3h 15m",
+      image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      from: "Mumbai",
+      to: "Pune",
+      type: "Tejas & Sleeper",
+      fare: "₹450 onwards",
+      time: "3 hrs",
+      image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&auto=format&fit=crop&q=80"
+    }
+  ],
+
+  initialBookings: [
+    {
+      id: "TRV-894120",
+      userId: "USR-101",
+      userEmail: "rahul@gmail.com",
+      userName: "Rahul Sharma",
+      userPhone: "9876543210",
+      transportId: "BUS-101",
+      transportName: "IntrCity SmartBus Volvo A/C",
+      transportType: "bus",
+      source: "Delhi",
+      destination: "Shimla",
+      journeyDate: "2026-11-05",
+      departureTime: "21:30",
+      arrivalTime: "05:45",
+      seats: ["L3", "L4"],
+      passengers: [
+        { name: "Rahul Sharma", age: 28, gender: "Male" },
+        { name: "Pooja Sharma", age: 26, gender: "Female" }
+      ],
+      farePerSeat: 950,
+      totalFare: 1900,
+      tax: 95,
+      discount: 100,
+      finalAmount: 1895,
+      paymentMethod: "UPI",
+      paymentStatus: "Paid",
+      bookingStatus: "Confirmed",
+      bookedAt: "2026-10-25T14:30:00Z"
+    },
+    {
+      id: "TRV-736511",
+      userId: "USR-102",
+      userEmail: "pooja@gmail.com",
+      userName: "Pooja Verma",
+      userPhone: "9812345678",
+      transportId: "TRN-201",
+      transportName: "Vande Bharat Express (22447)",
+      transportType: "train",
+      source: "Delhi",
+      destination: "Chandigarh",
+      journeyDate: "2026-11-08",
+      departureTime: "05:50",
+      arrivalTime: "08:45",
+      seats: ["C12"],
+      passengers: [
+        { name: "Pooja Verma", age: 24, gender: "Female" }
+      ],
+      farePerSeat: 945,
+      totalFare: 945,
+      tax: 47,
+      discount: 0,
+      finalAmount: 992,
+      paymentMethod: "Credit Card",
+      paymentStatus: "Paid",
+      bookingStatus: "Confirmed",
+      bookedAt: "2026-10-27T10:15:00Z"
+    }
+  ],
+
+  initialPayments: [
+    {
+      transactionId: "TXN-9012481",
+      bookingId: "TRV-894120",
+      userId: "USR-101",
+      userName: "Rahul Sharma",
+      amount: 1895,
+      method: "UPI (Google Pay)",
+      status: "Successful",
+      date: "2026-10-25 14:32:10"
+    },
+    {
+      transactionId: "TXN-7612304",
+      bookingId: "TRV-736511",
+      userId: "USR-102",
+      userName: "Pooja Verma",
+      amount: 992,
+      method: "HDFC Visa Credit Card",
+      status: "Successful",
+      date: "2026-10-27 10:17:45"
+    }
+  ],
+
+  customerReviews: [
+    {
+      name: "Vikas Malhotra",
+      city: "Delhi",
+      route: "Delhi to Shimla Volvo",
+      rating: 5,
+      comment: "Super smooth booking experience! Selected my favorite sleeper berth and the bus was right on schedule at Kashmere Gate.",
+      date: "2 days ago"
+    },
+    {
+      name: "Sneha Kapur",
+      city: "Chandigarh",
+      route: "Chandigarh to Delhi Vande Bharat",
+      rating: 5,
+      comment: "Instantly downloaded my boarding pass. Clean interface, no hidden charges, and quick seat selection.",
+      date: "1 week ago"
+    },
+    {
+      name: "Rohit Bansal",
+      city: "Bilaspur",
+      route: "Bilaspur to Shimla Express",
+      rating: 4.8,
+      comment: "Extremely convenient. It even allows cancellation with instant seat release. Very impressive platform!",
+      date: "2 weeks ago"
+    }
+  ]
+};

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Ticket / Boarding Pass - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ticket.css">
+</head>
+<body>
+
+  <!-- Navigation Bar (Hidden when printed) -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="ticket-page-wrapper">
+    <!-- Action Bar (Print & Download Buttons) -->
+    <div class="ticket-actions-bar">
+      <a href="my-bookings.html" class="btn btn-outline btn-sm">
+        ← My Bookings
+      </a>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn btn-outline btn-sm" id="downloadTicketBtn">
+          📥 Download PDF
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" id="printTicketBtn">
+          🖨️ Print Ticket
+        </button>
+      </div>
+    </div>
+
+    <!-- Official Boarding Pass Container -->
+    <div class="ticket-container" id="ticketContainer">
+      <!-- Header -->
+      <div class="ticket-header">
+        <div class="ticket-header-logo">
+          <div class="logo-icon" style="background:#ffffff; color:var(--primary); font-size:1.2rem; width:38px; height:38px;">🚌</div>
+          <span>Travel<span style="color:#ff6b72;">Ease</span> E-Ticket</span>
+        </div>
+        <div class="ticket-id-badge">
+          <div class="label">Booking Reference</div>
+          <div class="id-num" id="ticketBookingId">TRV-000000</div>
+        </div>
+      </div>
+
+      <!-- Route Banner -->
+      <div class="ticket-route-banner">
+        <div class="route-stop">
+          <div class="city-name" id="ticketSourceCity">Departure City</div>
+          <div class="point-name">Boarding ISBT Terminal</div>
+          <div class="time-val" id="ticketDepTime">00:00</div>
+          <div class="date-val" id="ticketDepDate">Date</div>
+        </div>
+
+        <div class="route-flight-path">
+          <span class="duration" id="ticketDuration">0h 0m</span>
+          <div class="flight-path-line"></div>
+          <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 600;">DIRECT ROUTE</span>
+        </div>
+
+        <div class="route-stop destination">
+          <div class="city-name" id="ticketDestCity">Arrival City</div>
+          <div class="point-name">Main Station Drop Point</div>
+          <div class="time-val" id="ticketArrTime">00:00</div>
+          <div class="date-val">Scheduled Arrival</div>
+        </div>
+      </div>
+
+      <!-- Perforated Tear Line -->
+      <div class="ticket-perforation"></div>
+
+      <!-- Ticket Details Body -->
+      <div class="ticket-details-body">
+        <!-- Left: Passenger List & Transport Specs -->
+        <div>
+          <div style="margin-bottom: 1rem;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Transport Service:</span>
+            <div style="font-size: 1.15rem; font-weight: 800; color: var(--dark);" id="ticketTransportName">Transport Name</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);" id="ticketCategory">Category</div>
+          </div>
+
+          <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 6px;">Passenger Manifest</h4>
+          <table class="passenger-manifest-table">
+            <thead>
+              <tr>
+                <th>Seat</th>
+                <th>Passenger Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody id="ticketPassengersBody">
+              <!-- Dynamically populated by js/ticket.js -->
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 2rem; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+            <div>Payment: <strong id="ticketPaymentMethod" style="color: var(--dark);">UPI</strong></div>
+            <div>Base Fare: <strong id="ticketBaseFare" style="color: var(--dark);">₹0</strong></div>
+            <div>Tax: <strong id="ticketTax" style="color: var(--dark);">₹0</strong></div>
+            <div>Discount: <strong id="ticketDiscount" style="color: #10b981;">-₹0</strong></div>
+          </div>
+        </div>
+
+        <!-- Right: QR Code Visual & Total Fare -->
+        <div class="ticket-validation-box">
+          <div class="ticket-qr-frame" id="ticketQrFrame">
+            <!-- SVG QR pattern injected by js/ticket.js -->
+          </div>
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">Scan for Verification</span>
+          <div class="ticket-status-pill confirmed" id="ticketStatusBadge">Confirmed</div>
+
+          <div class="ticket-total-fare-box" style="margin-top: 1.25rem;">
+            <div class="label">Total Fare Paid</div>
+            <div class="amount" id="ticketFinalAmount">₹0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy Footer -->
+      <div class="ticket-footer-strip">
+        <div class="ticket-policy-note">
+          <strong>Important Guidelines:</strong> Please carry a valid government photo ID along with this e-ticket during boarding. Report to the boarding terminal at least 20 minutes before departure time. Instant free cancellation is available in My Bookings.
+        </div>
+        <div style="text-align: right; font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">
+          Travel Helpline: 1800-456-7890
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ticket.js"></script>
+</body>
+</html>

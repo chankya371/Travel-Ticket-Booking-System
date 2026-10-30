@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelEase - Book Bus & Train Tickets Online</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+
+      <!-- User Session Actions / Login / Profile -->
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="search.html?type=bus" class="nav-link">Bus Booking</a>
+      <a href="search.html?type=train" class="nav-link">Train Booking</a>
+      <a href="my-bookings.html" class="nav-link">My Bookings</a>
+      <a href="about.html" class="nav-link">About Us</a>
+      <a href="contact.html" class="nav-link">Contact Us</a>
+      <a href="admin/login.html" class="nav-link" style="color: var(--secondary); font-weight: 700;">Admin Portal</a>
+    </div>
+  </header>
+
+  <!-- Hero Section with Search Widget -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span>✨</span> India's Most Trusted Ticket Booking Portal
+      </div>
+      <h1 class="hero-title">
+        Discover Your Next Journey with <span class="gradient-text">TravelEase</span>
+      </h1>
+      <p class="hero-subtitle">
+        Book bus and train tickets with live seat selection, zero booking fees, and instant cancellation refunds.
+      </p>
+    </div>
+
+    <!-- Search Ticket Widget -->
+    <div class="container">
+      <div class="search-widget-card">
+        <!-- Transport Type Tabs -->
+        <div class="search-tabs">
+          <button type="button" class="search-tab-btn active" id="tabBusBtn" onclick="selectSearchTab('bus')">
+            <span>🚌</span> Bus Booking
+          </button>
+          <button type="button" class="search-tab-btn train-tab" id="tabTrainBtn" onclick="selectSearchTab('train')">
+            <span>🚆</span> Train Booking
+          </button>
+        </div>
+
+        <!-- Search Form -->
+        <form id="heroSearchForm" action="search.html" method="GET" class="search-form-grid">
+          <input type="hidden" name="type" id="searchTypeInput" value="bus">
+
+          <!-- Source City -->
+          <div class="search-input-group">
+            <label><span>📍</span> From (Source)</label>
+            <input 
+              type="text" 
+              name="source" 
+              id="sourceInput" 
+              placeholder="e.g. Delhi" 
+              list="indianCitiesList" 
+              value="Delhi"
+              required
+            >
+          </div>
+
+          <!-- Swap Button -->
+          <div class="swap-btn-container">
+            <button type="button" class="swap-cities-btn" id="swapCitiesBtn" title="Swap Cities">⇄</button>
+          </div>
+
+          <!-- Destination City -->
+          <div class="search-input-group">
+            <label><span>🏁</span> To (Destination)</label>
+            <input 
+              type="text" 
+              name="destination" 
+              id="destInput" 
+              placeholder="e.g. Shimla" 
+              list="indianCitiesList" 
+              value="Shimla"
+              required
+            >
+          </div>
+
+          <!-- Journey Date -->
+          <div class="search-input-group">
+            <label><span>📅</span> Journey Date</label>
+            <input type="date" name="date" id="dateInput" required>
+          </div>
+
+          <!-- Passengers Count -->
+          <div class="search-input-group">
+            <label><span>👥</span> Passengers</label>
+            <select name="passengers" id="passengersInput">
+              <option value="1">1 Passenger</option>
+              <option value="2" selected>2 Passengers</option>
+              <option value="3">3 Passengers</option>
+              <option value="4">4 Passengers</option>
+              <option value="5">5 Passengers</option>
+              <option value="6">6 Passengers</option>
+            </select>
+          </div>
+
+          <!-- Search Submit Button -->
+          <button type="submit" class="btn btn-primary search-submit-btn">
+            <span>🔍</span> Search Tickets
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Datalist for Indian Cities Auto-fill -->
+  <datalist id="indianCitiesList"></datalist>
+
+  <!-- Quick Features Strip -->
+  <section class="features-strip">
+    <div class="container features-strip-grid">
+      <div class="strip-feature-item">
+        <div class="strip-feature-icon">🛡️</div>
+        <div class="strip-feature-info">
+          <h4>Safe & Verified Travel</h4>
+          <p>Sanitized buses & certified trains</p>
+        </div>
+      </div>
+      <div class="strip-feature-item">
+        <div class="strip-feature-icon">⚡</div>
+        <div class="strip-feature-info">
+          <h4>Instant E-Tickets</h4>
+          <p>Download boarding pass & QR code</p>
+        </div>
+      </div>
+      <div class="strip-feature-item">
+        <div class="strip-feature-icon">🔄</div>
+        <div class="strip-feature-info">
+          <h4>Easy Free Cancellation</h4>
+          <p>Instant seat release & refunds</p>
+        </div>
+      </div>
+      <div class="strip-feature-item">
+        <div class="strip-feature-icon">🎧</div>
+        <div class="strip-feature-info">
+          <h4>24x7 Customer Care</h4>
+          <p>Dedicated round-the-clock support</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Routes Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-badge">Top Picks</span>
+        <h2>Popular Travel Routes</h2>
+        <p>Choose from hundreds of scenic bus highways and express train routes across North & Central India.</p>
+      </div>
+
+      <div class="popular-routes-grid" id="popularRoutesGrid">
+        <!-- Rendered dynamically by script -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section" style="background: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-badge">Our Commitment</span>
+        <h2>Why Millions Choose TravelEase</h2>
+        <p>Enjoy a hassle-free, delightful travel booking journey from departure to your destination.</p>
+      </div>
+
+      <div class="why-us-grid">
+        <div class="why-card">
+          <div class="why-icon-box">💺</div>
+          <h3>Interactive Seat Layout</h3>
+          <p>Select your exact sleeper berth or window seat in real time with intuitive color indicators.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-box">🏷️</div>
+          <h3>Best Price Assurance</h3>
+          <p>Direct operator pricing with transparent taxes and zero hidden reservation charges.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-box">📱</div>
+          <h3>Simulated Instant Pay</h3>
+          <p>Test seamless checkout with simulated UPI QR, test cards, and realistic boarding pass generation.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-box">⭐</div>
+          <h3>Verified Reviews</h3>
+          <p>Read authentic passenger feedback, cleanliness ratings, and route punctuality scores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="sub-badge">Customer Stories</span>
+        <h2>Loved by 500,000+ Travelers</h2>
+        <p>Hear genuine reviews from real commuters and vacationers who book tickets daily on TravelEase.</p>
+      </div>
+
+      <div class="reviews-grid" id="customerReviewsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Banner -->
+  <section class="section" style="padding: 3rem 0; background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%); color: #ffffff;">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 6px;">Get ₹150 Off Your First Trip!</h3>
+        <p style="color: #94a3b8; font-size: 1rem;">Use promo code <strong style="color: #ff6b72; background: rgba(255, 107, 114, 0.15); padding: 2px 8px; border-radius: 4px;">FIRSTBOOK</strong> at checkout.</p>
+      </div>
+      <a href="search.html" class="btn btn-primary btn-lg">Book Tickets Now ➔</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon">🚌</div>
+            <span style="color:#ffffff;">Travel<span class="red">Ease</span></span>
+          </a>
+          <p>
+            TravelEase is India's next-generation online bus & train ticketing portal. Providing verified seat layouts, instant e-tickets, and round-the-clock passenger assistance.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="search.html?type=bus" class="footer-link">Bus Booking</a></li>
+            <li><a href="search.html?type=train" class="footer-link">Train Booking</a></li>
+            <li><a href="my-bookings.html" class="footer-link">My Bookings</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Help & Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Top Routes -->
+        <div class="footer-column">
+          <h4>Popular Routes</h4>
+          <ul class="footer-links">
+            <li><a href="search.html?source=Delhi&destination=Shimla" class="footer-link">Delhi to Shimla</a></li>
+            <li><a href="search.html?source=Delhi&destination=Chandigarh" class="footer-link">Delhi to Chandigarh</a></li>
+            <li><a href="search.html?source=Delhi&destination=Manali" class="footer-link">Delhi to Manali</a></li>
+            <li><a href="search.html?source=Delhi&destination=Jaipur" class="footer-link">Delhi to Jaipur</a></li>
+            <li><a href="search.html?source=Bilaspur&destination=Shimla" class="footer-link">Bilaspur to Shimla</a></li>
+            <li><a href="search.html?source=Mumbai&destination=Pune" class="footer-link">Mumbai to Pune</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Admin Access -->
+        <div class="footer-column">
+          <h4>Reach Us</h4>
+          <div class="footer-contact-item">
+            <span>📍</span> 108 Connaught Place, New Delhi, India
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span> +91 1800-456-7890 (Toll Free)
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span> support@travelease.in
+          </div>
+          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+            <a href="admin/login.html" class="btn btn-outline btn-sm" style="color: #cbd5e1; border-color: rgba(255,255,255,0.2);">
+              🔐 Admin Portal Login
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence Enabled</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Tab switching for Bus vs Train in Hero Search
+    function selectSearchTab(type) {
+      const busBtn = document.getElementById("tabBusBtn");
+      const trainBtn = document.getElementById("tabTrainBtn");
+      const typeInput = document.getElementById("searchTypeInput");
+
+      if (type === "bus") {
+        busBtn.classList.add("active");
+        trainBtn.classList.remove("active");
+        typeInput.value = "bus";
+      } else {
+        trainBtn.classList.add("active");
+        busBtn.classList.remove("active");
+        typeInput.value = "train";
+      }
+    }
+
+    // Render Popular Routes and Customer Reviews
+    document.addEventListener("DOMContentLoaded", () => {
+      const routesContainer = document.getElementById("popularRoutesGrid");
+      if (routesContainer && typeof SEED_DATA !== "undefined" && SEED_DATA.popularRoutes) {
+        routesContainer.innerHTML = SEED_DATA.popularRoutes.map(r => `
+          <div class="route-card">
+            <div class="route-card-img">
+              <img src="${r.image}" alt="${r.from} to ${r.to}" loading="lazy">
+              <span class="route-card-tag">${r.type}</span>
+            </div>
+            <div class="route-card-body">
+              <div class="route-title">
+                <h3>${r.from} ➔ ${r.to}</h3>
+              </div>
+              <div class="route-details">
+                <span>⏱️ Approx. ${r.time}</span>
+                <span>⭐ 4.8 Rating</span>
+              </div>
+              <div class="route-footer">
+                <div class="route-fare">${r.fare}</div>
+                <a href="search.html?source=${r.from}&destination=${r.to}" class="btn btn-outline-primary btn-sm">
+                  View Tickets
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      const reviewsContainer = document.getElementById("customerReviewsGrid");
+      if (reviewsContainer && typeof SEED_DATA !== "undefined" && SEED_DATA.customerReviews) {
+        reviewsContainer.innerHTML = SEED_DATA.customerReviews.map(rev => {
+          const initials = rev.name.split(" ").map(n => n[0]).join("");
+          return `
+            <div class="review-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">"${rev.comment}"</p>
+              <div class="review-author">
+                <div class="author-avatar">${initials}</div>
+                <div class="author-info">
+                  <h4>${rev.name}</h4>
+                  <span>${rev.city} • ${rev.route}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+    });
+  </script>
+</body>
+</html>

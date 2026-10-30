@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="register.html" class="btn btn-outline btn-sm">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Split Auth Screen -->
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <!-- Visual Side -->
+      <div class="auth-banner">
+        <div class="auth-banner-content">
+          <span class="auth-banner-tag">WELCOME BACK</span>
+          <h2 class="auth-banner-title">
+            Your Journey Starts <span>Right Here.</span>
+          </h2>
+          <p class="auth-banner-desc">
+            Sign in to access your upcoming travel bookings, download tickets, track buses in real-time, and manage cancellations.
+          </p>
+        </div>
+
+        <ul class="auth-perks-list">
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>Instant E-Tickets with QR codes</span>
+          </li>
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>Express 1-Click Seat Selection</span>
+          </li>
+          <li class="auth-perk-item">
+            <div class="auth-perk-icon">✓</div>
+            <span>Zero Booking Fee on First 3 Bookings</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Form Side -->
+      <div class="auth-form-side">
+        <div class="auth-header">
+          <h2>Sign In</h2>
+          <p>Enter your account credentials to continue</p>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">✉️</span>
+              <input 
+                type="email" 
+                id="loginEmail" 
+                placeholder="name@example.com" 
+                required
+                autocomplete="email"
+              >
+            </div>
+            <span class="form-error-msg" id="emailError">Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="form-control-wrapper has-icon">
+              <span class="form-icon-left">🔒</span>
+              <input 
+                type="password" 
+                id="loginPassword" 
+                placeholder="Enter your password" 
+                required
+              >
+              <button type="button" class="toggle-password-btn" id="togglePasswordBtn" title="Toggle visibility">👁️</button>
+            </div>
+            <span class="form-error-msg" id="passwordError">Password must be at least 6 characters.</span>
+          </div>
+
+          <div class="form-row-remember">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" checked>
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-password-link" onclick="openModal('forgotModal'); return false;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn">
+            Sign In to Account
+          </button>
+
+          <!-- Quick Test Credentials Box -->
+          <div class="demo-credentials-box">
+            <div class="title">Demo Accounts (Click to quick-fill):</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="quick-fill-btn" onclick="quickFill('rahul@gmail.com', 'password123')">
+                👤 User: rahul@gmail.com
+              </button>
+              <button type="button" class="quick-fill-btn" onclick="quickFill('admin@gmail.com', 'admin123')">
+                🔐 Admin: admin@gmail.com
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account yet? <a href="register.html">Register here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-backdrop" id="forgotModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Reset Password</h3>
+        <button class="modal-close-btn" onclick="closeModal('forgotModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+          Enter your registered email address and we'll simulate sending password recovery instructions.
+        </p>
+        <div class="form-group">
+          <label>Registered Email</label>
+          <input type="email" id="forgotEmail" class="form-control-wrapper" style="padding: 10px 14px; width: 100%; border: 1px solid var(--border-color); border-radius: var(--radius-sm);" placeholder="name@example.com">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('forgotModal')">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" id="submitForgotBtn">Send Instructions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Quick-fill helper for test accounts
+    function quickFill(email, password) {
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginPassword").value = password;
+      showToast(`Credentials filled for ${email}`, "info");
+    }
+
+    // Toggle password eye button
+    const toggleBtn = document.getElementById("togglePasswordBtn");
+    const pwdInput = document.getElementById("loginPassword");
+    if (toggleBtn && pwdInput) {
+      toggleBtn.addEventListener("click", () => {
+        const type = pwdInput.getAttribute("type") === "password" ? "text" : "password";
+        pwdInput.setAttribute("type", type);
+        toggleBtn.textContent = type === "password" ? "👁️" : "🙈";
+      });
+    }
+
+    // Handle Form Submit
+    const form = document.getElementById("loginForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const remember = document.getElementById("rememberMe").checked;
+
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+
+      emailError.classList.remove("visible");
+      passwordError.classList.remove("visible");
+
+      if (!email) {
+        emailError.textContent = "Email is required.";
+        emailError.classList.add("visible");
+        return;
+      }
+
+      if (!password) {
+        passwordError.textContent = "Password is required.";
+        passwordError.classList.add("visible");
+        return;
+      }
+
+      const res = Auth.login(email, password, remember);
+
+      if (res.success) {
+        showToast(res.message, "success");
+        setTimeout(() => {
+          if (res.isAdmin) {
+            window.location.href = "admin/dashboard.html";
+          } else {
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectUrl = urlParams.get("redirect");
+            const checkout = sessionStorage.getItem("tb_currentCheckout");
+
+            if (redirectUrl) {
+              window.location.href = redirectUrl;
+            } else if (checkout) {
+              window.location.href = "booking.html";
+            } else {
+              window.location.href = "my-bookings.html";
+            }
+          }
+        }, 1000);
+      } else {
+        showToast(res.message, "error");
+      }
+    });
+
+    // If redirected with intent, carry over to register links
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get("redirect");
+      if (redirectUrl) {
+        const regLink = document.querySelector(".auth-footer a");
+        if (regLink) regLink.href = `register.html?redirect=${encodeURIComponent(redirectUrl)}`;
+        const topRegBtn = document.querySelector(".nav-actions .btn");
+        if (topRegBtn) topRegBtn.href = `register.html?redirect=${encodeURIComponent(redirectUrl)}`;
+      }
+    });
+
+    // Forgot password flow
+    document.getElementById("submitForgotBtn").addEventListener("click", () => {
+      const email = document.getElementById("forgotEmail").value.trim();
+      const res = Auth.resetPassword(email);
+      if (res.success) {
+        closeModal("forgotModal");
+        showToast(res.message, "success", 6000);
+      } else {
+        showToast(res.message, "error");
+      }
+    });
+  </script>
+</body>
+</html>

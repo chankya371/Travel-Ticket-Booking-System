@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Support - TravelEase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <style>
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background: var(--bg-subtle);
+      color: var(--secondary);
+    }
+    .faq-answer {
+      padding: 0 20px 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-toggle-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">🚌</div>
+        <span>Travel<span class="red">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html?type=bus" class="nav-link">Bus Booking</a></li>
+        <li><a href="search.html?type=train" class="nav-link">Train Booking</a></li>
+        <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="navUserActions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section style="background: linear-gradient(135deg, #0b1a30 0%, #173459 100%); color: #ffffff; padding: 3.5rem 0;">
+    <div class="container text-center" style="max-width: 680px; margin: 0 auto;">
+      <span class="hero-badge">24/7 CUSTOMER CARE</span>
+      <h1 style="font-size: 2.5rem; font-weight: 800; margin: 10px 0;">We're Here to Help You</h1>
+      <p style="color: #cbd5e1; font-size: 1.05rem;">
+        Have an inquiry regarding a booking, schedule change, or cancellation? Reach out to our dedicated support crew.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Grid & Form -->
+  <main class="container" style="padding: 4rem 1.5rem 5rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem;">
+      <!-- Contact Cards Side -->
+      <div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 1.5rem;">
+          Get in Touch
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div class="card" style="padding: 1.5rem; display: flex; align-items: flex-start; gap: 16px;">
+            <div class="strip-feature-icon" style="background: var(--primary-light); color: var(--primary);">📍</div>
+            <div>
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark);">Headquarters</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">
+                108 Connaught Place, Block C, Central Circle, New Delhi, 110001, India
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; display: flex; align-items: flex-start; gap: 16px;">
+            <div class="strip-feature-icon" style="background: var(--secondary-light); color: var(--secondary);">📞</div>
+            <div>
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark);">Phone Support</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">
+                +91 1800-456-7890 (Toll-Free, 24x7 Assistance)
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 1.5rem; display: flex; align-items: flex-start; gap: 16px;">
+            <div class="strip-feature-icon" style="background: var(--success-light); color: var(--success);">✉️</div>
+            <div>
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark);">Email Us</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">
+                support@travelease.in / bookings@travelease.in
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback / Message Form -->
+      <div class="card" style="padding: 2.5rem; background: #ffffff;">
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 6px;">
+          Send us a Message
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Your feedback helps us make intercity travel better for everyone.
+        </p>
+
+        <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="feedbackName" class="form-control-wrapper" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);" placeholder="Your name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="feedbackEmail" class="form-control-wrapper" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm);" placeholder="name@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Subject / Topic</label>
+            <select id="feedbackSubject" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: #ffffff;">
+              <option value="Booking Assistance">Booking Assistance</option>
+              <option value="Cancellation / Refund">Cancellation / Refund</option>
+              <option value="Bus / Train Schedule">Bus / Train Schedule</option>
+              <option value="General Feedback">General Feedback</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Your Message *</label>
+            <textarea id="feedbackMessage" rows="4" style="padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-family: inherit; font-size: 0.95rem; resize: vertical;" placeholder="Type your message or inquiry here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg">
+            Submit Message
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div style="margin-top: 5rem; max-width: 840px; margin-left: auto; margin-right: auto;">
+      <div class="section-header">
+        <span class="sub-badge">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common questions about ticket bookings and policies.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I download or print my e-ticket?</span>
+          <span class="faq-toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Immediately upon completing your payment, your official e-ticket boarding pass is displayed. You can also visit <strong>My Bookings</strong> anytime to view, download as PDF, or print your ticket.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How does cancellation and seat restoration work?</span>
+          <span class="faq-toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Navigate to <strong>My Bookings</strong>, locate your confirmed reservation, and click "Cancel Ticket". The system immediately cancels the booking, updates your status, and automatically frees up the seats back into the available pool for other travelers.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What documents are required while boarding?</span>
+          <span class="faq-toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Any government-issued photo ID (Aadhaar Card, Driving License, Passport, or Voter ID) along with your digital E-ticket or printed boarding pass is required.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I book multiple seats in one go?</span>
+          <span class="faq-toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! You can select up to 6 seats in a single reservation. The system will dynamically generate passenger input fields for each chosen seat and calculate the total fare accordingly.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 TravelEase System. All rights reserved. Built with pure HTML5, CSS3 & Vanilla JavaScript.</div>
+        <div>College Demonstration Project • LocalStorage Persistence</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // FAQ Accordion Toggle
+    document.querySelectorAll(".faq-question").forEach(q => {
+      q.addEventListener("click", () => {
+        const item = q.parentElement;
+        item.classList.toggle("active");
+      });
+    });
+
+    // Handle Contact Form Submit
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("feedbackName").value.trim();
+      const email = document.getElementById("feedbackEmail").value.trim();
+      const subject = document.getElementById("feedbackSubject").value;
+      const message = document.getElementById("feedbackMessage").value.trim();
+
+      Storage.addFeedback({
+        name, email, subject, message,
+        date: new Date().toLocaleString("en-IN")
+      });
+
+      showToast("Thank you! Your message has been received.", "success");
+      document.getElementById("contactForm").reset();
+    });
+  </script>
+</body>
+</html>
