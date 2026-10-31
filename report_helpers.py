@@ -63,7 +63,7 @@ def add_page_number_to_footer(footer):
     run2.font.size = Pt(10)
     run2.font.color.rgb = RGBColor(100, 116, 139)
 
-def format_paragraph(p, space_before=0, space_after=6, line_spacing=1.5, align=WD_ALIGN_PARAGRAPH.JUSTIFY):
+def format_paragraph(p, space_before=0, space_after=4, line_spacing=1.4, align=WD_ALIGN_PARAGRAPH.JUSTIFY):
     p.paragraph_format.space_before = Pt(space_before)
     p.paragraph_format.space_after = Pt(space_after)
     p.paragraph_format.line_spacing = line_spacing
@@ -71,31 +71,18 @@ def format_paragraph(p, space_before=0, space_after=6, line_spacing=1.5, align=W
 
 def add_heading_1(doc, text):
     h = doc.add_paragraph()
-    h.paragraph_format.space_before = Pt(18)
-    h.paragraph_format.space_after = Pt(8)
-    h.paragraph_format.keep_with_next = True
-    h.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    run = h.add_run(text)
-    run.font.name = 'Times New Roman'
-    run.font.size = Pt(16)
-    run.font.bold = True
-    run.font.color.rgb = RGBColor(15, 23, 42)
-    return h
-
-def add_heading_2(doc, text):
-    h = doc.add_paragraph()
     h.paragraph_format.space_before = Pt(14)
     h.paragraph_format.space_after = Pt(6)
     h.paragraph_format.keep_with_next = True
     h.alignment = WD_ALIGN_PARAGRAPH.LEFT
     run = h.add_run(text)
     run.font.name = 'Times New Roman'
-    run.font.size = Pt(14)
+    run.font.size = Pt(15)
     run.font.bold = True
-    run.font.color.rgb = RGBColor(0, 119, 237)
+    run.font.color.rgb = RGBColor(15, 23, 42)
     return h
 
-def add_heading_3(doc, text):
+def add_heading_2(doc, text):
     h = doc.add_paragraph()
     h.paragraph_format.space_before = Pt(10)
     h.paragraph_format.space_after = Pt(4)
@@ -103,57 +90,72 @@ def add_heading_3(doc, text):
     h.alignment = WD_ALIGN_PARAGRAPH.LEFT
     run = h.add_run(text)
     run.font.name = 'Times New Roman'
-    run.font.size = Pt(12.5)
+    run.font.size = Pt(13.5)
+    run.font.bold = True
+    run.font.color.rgb = RGBColor(0, 119, 237)
+    return h
+
+def add_heading_3(doc, text):
+    h = doc.add_paragraph()
+    h.paragraph_format.space_before = Pt(8)
+    h.paragraph_format.space_after = Pt(3)
+    h.paragraph_format.keep_with_next = True
+    h.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    run = h.add_run(text)
+    run.font.name = 'Times New Roman'
+    run.font.size = Pt(12)
     run.font.bold = True
     run.font.color.rgb = RGBColor(30, 41, 59)
     return h
 
 def add_body_p(doc, text, bold_prefix=None):
     p = doc.add_paragraph()
-    format_paragraph(p, space_before=0, space_after=6, line_spacing=1.5, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+    format_paragraph(p, space_before=0, space_after=4, line_spacing=1.4, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
     if bold_prefix:
         r_pre = p.add_run(bold_prefix)
         r_pre.font.name = 'Times New Roman'
-        r_pre.font.size = Pt(12)
+        r_pre.font.size = Pt(11.5)
         r_pre.font.bold = True
         r_pre.font.color.rgb = RGBColor(15, 23, 42)
     run = p.add_run(text)
     run.font.name = 'Times New Roman'
-    run.font.size = Pt(12)
+    run.font.size = Pt(11.5)
     run.font.color.rgb = RGBColor(30, 41, 59)
     return p
 
 def add_bullet_p(doc, text, bold_prefix=None):
     p = doc.add_paragraph(style='List Bullet')
-    format_paragraph(p, space_before=0, space_after=4, line_spacing=1.3, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+    format_paragraph(p, space_before=0, space_after=2.5, line_spacing=1.25, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
     if bold_prefix:
         r_pre = p.add_run(bold_prefix)
         r_pre.font.name = 'Times New Roman'
-        r_pre.font.size = Pt(12)
+        r_pre.font.size = Pt(11.5)
         r_pre.font.bold = True
         r_pre.font.color.rgb = RGBColor(15, 23, 42)
     run = p.add_run(text)
     run.font.name = 'Times New Roman'
-    run.font.size = Pt(12)
+    run.font.size = Pt(11.5)
     run.font.color.rgb = RGBColor(30, 41, 59)
     return p
 
-def add_figure_image(doc, img_path, caption):
+def add_figure_image(doc, img_path, caption, width=Inches(4.6)):
     if os.path.exists(img_path):
         p_img = doc.add_paragraph()
         p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_img.paragraph_format.space_before = Pt(8)
-        p_img.paragraph_format.space_after = Pt(4)
+        p_img.paragraph_format.space_before = Pt(4)
+        p_img.paragraph_format.space_after = Pt(2)
+        p_img.paragraph_format.keep_with_next = True
         run = p_img.add_run()
-        run.add_picture(img_path, width=Inches(5.8))
+        run.add_picture(img_path, width=width)
         
         p_cap = doc.add_paragraph()
         p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p_cap.paragraph_format.space_before = Pt(0)
-        p_cap.paragraph_format.space_after = Pt(12)
+        p_cap.paragraph_format.space_before = Pt(1)
+        p_cap.paragraph_format.space_after = Pt(6)
+        p_cap.paragraph_format.keep_with_next = False
         r_cap = p_cap.add_run(caption)
         r_cap.font.name = 'Times New Roman'
-        r_cap.font.size = Pt(10.5)
+        r_cap.font.size = Pt(10)
         r_cap.font.bold = True
         r_cap.font.color.rgb = RGBColor(71, 85, 105)
 

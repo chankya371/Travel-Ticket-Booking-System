@@ -279,71 +279,71 @@ def create_full_report():
         ("Acknowledgement", "iv"),
         ("Abstract", "v"),
         ("List of Figures", "viii"),
-        ("List of Tables", "ix"),
+        ("List of Tables", "viii"),
         ("List of Abbreviations", "x"),
-        ("CHAPTER 1: INTRODUCTION", "1"),
-        ("    1.1 Introduction", "1"),
-        ("    1.2 Background of the Project", "2"),
-        ("    1.3 Problem Statement", "3"),
-        ("    1.4 Objectives of the Project", "4"),
-        ("    1.5 Scope of the Project", "5"),
-        ("CHAPTER 2: LITERATURE REVIEW AND EXISTING SYSTEM", "6"),
-        ("    2.1 Existing System", "6"),
-        ("    2.2 Limitations of Existing System", "7"),
-        ("    2.3 Proposed System", "8"),
-        ("    2.4 Advantages of Proposed System", "9"),
-        ("CHAPTER 3: SYSTEM ANALYSIS AND REQUIREMENTS", "10"),
-        ("    3.1 Functional Requirements", "10"),
-        ("    3.2 Non-Functional Requirements", "11"),
-        ("    3.3 Hardware Requirements", "12"),
-        ("    3.4 Software Requirements", "13"),
-        ("    3.5 Feasibility Study", "14"),
-        ("CHAPTER 4: TECHNOLOGIES USED", "16"),
-        ("    4.1 HTML5", "16"),
+        ("CHAPTER 1: INTRODUCTION", "11"),
+        ("    1.1 Introduction", "11"),
+        ("    1.2 Background of the Project", "11"),
+        ("    1.3 Problem Statement", "11"),
+        ("    1.4 Objectives of the Project", "12"),
+        ("    1.5 Scope of the Project", "12"),
+        ("CHAPTER 2: LITERATURE REVIEW AND EXISTING SYSTEM", "13"),
+        ("    2.1 Existing System", "13"),
+        ("    2.2 Limitations of Existing System", "13"),
+        ("    2.3 Proposed System", "13"),
+        ("    2.4 Advantages of Proposed System", "14"),
+        ("CHAPTER 3: SYSTEM ANALYSIS AND REQUIREMENTS", "15"),
+        ("    3.1 Functional Requirements", "15"),
+        ("    3.2 Non-Functional Requirements", "15"),
+        ("    3.3 Hardware Requirements", "15"),
+        ("    3.4 Software Requirements", "16"),
+        ("    3.5 Feasibility Study", "16"),
+        ("CHAPTER 4: TECHNOLOGIES USED", "17"),
+        ("    4.1 HTML5", "17"),
         ("    4.2 CSS3", "17"),
-        ("    4.3 JavaScript (ES6+)", "18"),
-        ("    4.4 LocalStorage API", "19"),
-        ("    4.5 Development & Testing Tools", "20"),
-        ("CHAPTER 5: SYSTEM DESIGN", "21"),
-        ("    5.1 System Architecture", "21"),
-        ("    5.2 Data Flow Diagram (DFD Level 0 and Level 1)", "23"),
-        ("    5.3 Use Case Diagram (User and Administrator)", "25"),
-        ("    5.4 Flowchart (End-to-End Booking Process)", "27"),
-        ("    5.5 Database / Data Storage Design", "29"),
-        ("    5.6 Module Description", "31"),
-        ("CHAPTER 6: IMPLEMENTATION", "33"),
-        ("    6.1 Home Page & Hero Search Interface", "33"),
-        ("    6.2 User Registration and Login Modules", "34"),
-        ("    6.3 Ticket Search & Multi-Facet Filtering Engine", "35"),
-        ("    6.4 Bus and Train Details & Amenities Representation", "36"),
-        ("    6.5 Interactive Visual Seat Selection & Color Cues", "37"),
-        ("    6.6 Passenger Details Collection", "38"),
-        ("    6.7 Booking & Simulated Payment Gateway Integration", "39"),
-        ("    6.8 Booking History & Cancellation Seat Restoration", "40"),
-        ("    6.9 Boarding Pass E-Ticket Generation & QR Visuals", "41"),
-        ("    6.10 Admin Dashboard, Analytics & CSV Export", "42"),
-        ("CHAPTER 7: TESTING", "44"),
-        ("    7.1 Testing Introduction & Methodologies", "44"),
-        ("    7.2 Functional Testing", "45"),
-        ("    7.3 Validation Testing", "46"),
-        ("    7.4 Comprehensive Test Cases & Matrix", "47"),
-        ("    7.5 Testing Results & Verification Summary", "49"),
-        ("CHAPTER 8: RESULTS AND SCREENSHOTS", "50"),
-        ("    8.1 Home Page Interface", "50"),
-        ("    8.2 User Authentication & Registration", "51"),
-        ("    8.3 Ticket Search Results & Filter Sidebar", "52"),
-        ("    8.4 Interactive Visual Seat Selection", "53"),
-        ("    8.5 Passenger Details Collection & Checkout", "54"),
-        ("    8.6 Passenger Booking History & Cancellation", "55"),
-        ("    8.7 Official Boarding Pass E-Ticket", "56"),
-        ("    8.8 Admin Analytics Dashboard & Fleet Control", "57"),
-        ("CHAPTER 9: CONCLUSION AND FUTURE SCOPE", "57"),
-        ("    9.1 Conclusion", "57"),
-        ("    9.2 Limitations", "58"),
-        ("    9.3 Future Enhancements", "59"),
-        ("CHAPTER 10: REFERENCES", "60"),
-        ("    10.1 Books and Study Materials", "60"),
-        ("    10.2 Websites and Online Documentation", "61")
+        ("    4.3 JavaScript (ES6+)", "17"),
+        ("    4.4 LocalStorage API", "18"),
+        ("    4.5 Development & Testing Tools", "18"),
+        ("CHAPTER 5: SYSTEM DESIGN", "19"),
+        ("    5.1 System Architecture", "19"),
+        ("    5.2 Data Flow Diagram (DFD Level 0 and Level 1)", "19"),
+        ("    5.3 Use Case Diagram (User and Administrator)", "20"),
+        ("    5.4 Flowchart (End-to-End Booking Process)", "21"),
+        ("    5.5 Database / Data Storage Design", "22"),
+        ("    5.6 Module Description", "23"),
+        ("CHAPTER 6: IMPLEMENTATION", "24"),
+        ("    6.1 Home Page & Hero Search Interface", "24"),
+        ("    6.2 User Registration and Login Modules", "24"),
+        ("    6.3 Ticket Search & Multi-Facet Filtering Engine", "24"),
+        ("    6.4 Bus and Train Details & Amenities Representation", "24"),
+        ("    6.5 Interactive Visual Seat Selection & Color Cues", "24"),
+        ("    6.6 Passenger Details Collection", "25"),
+        ("    6.7 Booking & Simulated Payment Gateway Integration", "25"),
+        ("    6.8 Booking History & Cancellation Seat Restoration", "25"),
+        ("    6.9 Boarding Pass E-Ticket Generation & QR Visuals", "25"),
+        ("    6.10 Admin Dashboard, Analytics & CSV Export", "25"),
+        ("CHAPTER 7: TESTING", "26"),
+        ("    7.1 Testing Introduction & Methodologies", "26"),
+        ("    7.2 Functional Testing", "26"),
+        ("    7.3 Validation Testing", "26"),
+        ("    7.4 Comprehensive Test Cases & Matrix", "26"),
+        ("    7.5 Testing Results & Verification Summary", "27"),
+        ("CHAPTER 8: RESULTS AND SCREENSHOTS", "28"),
+        ("    8.1 Home Page Interface", "28"),
+        ("    8.2 User Authentication & Registration", "28"),
+        ("    8.3 Ticket Search Results & Filter Sidebar", "29"),
+        ("    8.4 Interactive Visual Seat Selection", "29"),
+        ("    8.5 Passenger Details Collection & Checkout", "30"),
+        ("    8.6 Passenger Booking History & Cancellation", "30"),
+        ("    8.7 Official Boarding Pass E-Ticket", "31"),
+        ("    8.8 Admin Analytics Dashboard & Fleet Control", "31"),
+        ("CHAPTER 9: CONCLUSION AND FUTURE SCOPE", "33"),
+        ("    9.1 Conclusion", "33"),
+        ("    9.2 Limitations", "33"),
+        ("    9.3 Future Enhancements", "33"),
+        ("CHAPTER 10: REFERENCES", "35"),
+        ("    10.1 Books and Study Materials", "35"),
+        ("    10.2 Websites and Online Documentation", "35")
     ]
 
     toc_table = doc.add_table(rows=len(toc_data), cols=2)
@@ -355,22 +355,28 @@ def create_full_report():
     for i, (title, page) in enumerate(toc_data):
         c0 = toc_table.cell(i, 0)
         c1 = toc_table.cell(i, 1)
-        set_cell_margins(c0, 20, 20, 40, 40)
-        set_cell_margins(c1, 20, 20, 40, 40)
+        set_cell_margins(c0, 10, 10, 20, 20)
+        set_cell_margins(c1, 10, 10, 20, 20)
         
         p0 = c0.paragraphs[0]
         p0.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p0.paragraph_format.space_before = Pt(0)
+        p0.paragraph_format.space_after = Pt(1)
+        p0.paragraph_format.line_spacing = 1.05
         r0 = p0.add_run(title)
         r0.font.name = 'Times New Roman'
-        r0.font.size = Pt(10.5)
+        r0.font.size = Pt(9.5)
         if title.startswith("CHAPTER") or not title.startswith("    "):
             r0.font.bold = True
             
         p1 = c1.paragraphs[0]
         p1.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        p1.paragraph_format.space_before = Pt(0)
+        p1.paragraph_format.space_after = Pt(1)
+        p1.paragraph_format.line_spacing = 1.05
         r1 = p1.add_run(page)
         r1.font.name = 'Times New Roman'
-        r1.font.size = Pt(10.5)
+        r1.font.size = Pt(9.5)
         if title.startswith("CHAPTER"):
             r1.font.bold = True
 
@@ -379,21 +385,21 @@ def create_full_report():
     # 7. LIST OF FIGURES
     add_heading_1(doc, "LIST OF FIGURES")
     figures_list = [
-        ("Figure 5.1", "Three-Tier Client-Side System Architecture Diagram", "22"),
-        ("Figure 5.2", "Data Flow Diagram (Level 0 - Context Level Diagram)", "23"),
-        ("Figure 5.3", "Data Flow Diagram (Level 1 - Functional Decomposition)", "24"),
-        ("Figure 5.4", "User Scope UML Use Case Diagram", "25"),
-        ("Figure 5.5", "Admin Management Scope UML Use Case Diagram", "26"),
-        ("Figure 5.6", "End-to-End Booking and Ticket Issuance Flowchart", "28"),
-        ("Figure 8.1", "Home Page & Hero Search Interface Screenshot", "50"),
-        ("Figure 8.2", "User Authentication & Sign-In Interface Screenshot", "51"),
-        ("Figure 8.3", "User Registration & Form Validation Screenshot", "51"),
-        ("Figure 8.4", "Live Ticket Search Results & Filter Sidebar Screenshot", "52"),
-        ("Figure 8.5", "Interactive Visual Seat Layout & Fare Calculation Screenshot", "53"),
-        ("Figure 8.6", "Passenger Details Collection & Payment Checkout Screenshot", "54"),
-        ("Figure 8.7", "Passenger Booking History & Cancellation Management Screenshot", "55"),
-        ("Figure 8.8", "Official Boarding Pass E-Ticket with QR Code Screenshot", "56"),
-        ("Figure 8.9", "Admin Analytics Dashboard & Real-Time Fleet Control Screenshot", "57")
+        ("Figure 5.1", "Three-Tier Client-Side System Architecture Diagram", "19"),
+        ("Figure 5.2", "Data Flow Diagram (Level 0 - Context Level Diagram)", "20"),
+        ("Figure 5.3", "Data Flow Diagram (Level 1 - Functional Decomposition)", "20"),
+        ("Figure 5.4", "User Scope UML Use Case Diagram", "21"),
+        ("Figure 5.5", "Admin Management Scope UML Use Case Diagram", "21"),
+        ("Figure 5.6", "End-to-End Booking and Ticket Issuance Flowchart", "22"),
+        ("Figure 8.1", "Home Page & Hero Search Interface Screenshot", "28"),
+        ("Figure 8.2", "User Authentication & Sign-In Interface Screenshot", "28"),
+        ("Figure 8.3", "User Registration & Form Validation Screenshot", "29"),
+        ("Figure 8.4", "Live Ticket Search Results & Filter Sidebar Screenshot", "29"),
+        ("Figure 8.5", "Interactive Visual Seat Layout & Fare Calculation Screenshot", "30"),
+        ("Figure 8.6", "Passenger Details Collection & Payment Checkout Screenshot", "30"),
+        ("Figure 8.7", "Passenger Booking History & Cancellation Management Screenshot", "31"),
+        ("Figure 8.8", "Official Boarding Pass E-Ticket with QR Code Screenshot", "31"),
+        ("Figure 8.9", "Admin Analytics Dashboard & Real-Time Fleet Control Screenshot", "32")
     ]
 
     fig_table = doc.add_table(rows=len(figures_list) + 1, cols=3)
@@ -428,16 +434,14 @@ def create_full_report():
         row_cells[2].paragraphs[0].runs[0].font.size = Pt(10)
         row_cells[2].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
-    doc.add_page_break()
-
     # 8. LIST OF TABLES
     add_heading_1(doc, "LIST OF TABLES")
     tables_list = [
-        ("Table 3.1", "Client & Demonstration Hardware Requirements Specification", "12"),
-        ("Table 3.2", "Operating Environment & Browser Software Requirements", "13"),
-        ("Table 5.1", "Functional Modules Description & Implementation Mapping", "31"),
-        ("Table 5.2", "LocalStorage Key-Value Entity Schema & Structural Design", "32"),
-        ("Table 7.1", "System Test Cases, Validation Scenarios & Verification Matrix", "47")
+        ("Table 3.1", "Client & Demonstration Hardware Requirements Specification", "16"),
+        ("Table 3.2", "Operating Environment & Browser Software Requirements", "16"),
+        ("Table 5.1", "Functional Modules Description & Implementation Mapping", "23"),
+        ("Table 5.2", "LocalStorage Key-Value Entity Schema & Structural Design", "23"),
+        ("Table 7.1", "System Test Cases, Validation Scenarios & Verification Matrix", "27")
     ]
 
     tbl_list_tbl = doc.add_table(rows=len(tables_list) + 1, cols=3)
