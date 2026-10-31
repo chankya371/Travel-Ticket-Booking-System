@@ -58,9 +58,16 @@ def create_full_report():
     # =========================================================================
 
     # 1. COVER PAGE
+    if os.path.exists("diagrams/college_logo.jpg"):
+        p_logo = doc.add_paragraph()
+        p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        format_paragraph(p_logo, space_before=0, space_after=6, line_spacing=1.0)
+        r_logo = p_logo.add_run()
+        r_logo.add_picture("diagrams/college_logo.jpg", width=Inches(1.75))
+
     p_pre = doc.add_paragraph()
     p_pre.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_pre, space_before=10, space_after=12, line_spacing=1.15)
+    format_paragraph(p_pre, space_before=2, space_after=6, line_spacing=1.1)
     r = p_pre.add_run("A MINOR PROJECT REPORT ON")
     r.font.name = 'Times New Roman'
     r.font.size = Pt(13)
@@ -69,30 +76,29 @@ def create_full_report():
 
     p_title = doc.add_paragraph()
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_title, space_before=14, space_after=16, line_spacing=1.15)
+    format_paragraph(p_title, space_before=4, space_after=6, line_spacing=1.1)
     r_title = p_title.add_run("TRAVEL TICKET BOOKING SYSTEM")
     r_title.font.name = 'Times New Roman'
-    r_title.font.size = Pt(24)
+    r_title.font.size = Pt(22)
     r_title.font.bold = True
     r_title.font.color.rgb = RGBColor(229, 43, 80)
 
     p_sub = doc.add_paragraph()
     p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_sub, space_before=4, space_after=28, line_spacing=1.2)
+    format_paragraph(p_sub, space_before=2, space_after=12, line_spacing=1.15)
     r_sub = p_sub.add_run("A Responsive Web-Based Platform for Intercity Bus & Express Train Reservation")
     r_sub.font.name = 'Times New Roman'
-    r_sub.font.size = Pt(12)
+    r_sub.font.size = Pt(11)
     r_sub.font.italic = True
     r_sub.font.color.rgb = RGBColor(100, 116, 139)
 
     p_deg = doc.add_paragraph()
     p_deg.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_deg, space_before=16, space_after=32, line_spacing=1.3)
+    format_paragraph(p_deg, space_before=6, space_after=14, line_spacing=1.2)
     r_deg = p_deg.add_run(
         "Submitted in partial fulfillment of the requirements for the award of the degree of\n"
-        "BACHELOR OF TECHNOLOGY / COMPUTER APPLICATIONS\n"
-        "in\n"
-        "COMPUTER SCIENCE AND ENGINEERING / INFORMATION TECHNOLOGY"
+        "BACHELOR OF COMPUTER APPLICATIONS (BCA)\n"
+        "5th Semester"
     )
     r_deg.font.name = 'Times New Roman'
     r_deg.font.size = Pt(11)
@@ -109,34 +115,34 @@ def create_full_report():
     cell_left = meta_table.cell(0, 0)
     p_l = cell_left.paragraphs[0]
     p_l.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    format_paragraph(p_l, space_before=0, space_after=4, line_spacing=1.2)
+    format_paragraph(p_l, space_before=0, space_after=2, line_spacing=1.15)
     r_l1 = p_l.add_run("SUBMITTED BY:\n")
     r_l1.font.bold = True
-    r_l1.font.size = Pt(11)
-    r_l2 = p_l.add_run("[Enter Student Name]\nRoll Number: [Enter Roll Number]\nSemester: [Enter Semester]")
-    r_l2.font.size = Pt(11)
+    r_l1.font.size = Pt(10.5)
+    r_l2 = p_l.add_run("SHIVANI\nRoll Number: 2448361\nClass & Sem: BCA, 5th Sem")
+    r_l2.font.size = Pt(10.5)
 
     cell_right = meta_table.cell(0, 1)
     p_r = cell_right.paragraphs[0]
     p_r.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    format_paragraph(p_r, space_before=0, space_after=4, line_spacing=1.2)
-    r_r1 = p_r.add_run("UNDER THE GUIDANCE OF:\n")
+    format_paragraph(p_r, space_before=0, space_after=2, line_spacing=1.15)
+    r_r1 = p_r.add_run("SUBMITTED TO:\n")
     r_r1.font.bold = True
-    r_r1.font.size = Pt(11)
-    r_r2 = p_r.add_run("[Enter Guide Name]\nAssistant Professor\n[Enter Department]")
-    r_r2.font.size = Pt(11)
+    r_r1.font.size = Pt(10.5)
+    r_r2 = p_r.add_run("MRS. JYOTI\nAssistant Professor\nDept. of Computer Applications")
+    r_r2.font.size = Pt(10.5)
 
     p_inst = doc.add_paragraph()
     p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    format_paragraph(p_inst, space_before=40, space_after=0, line_spacing=1.2)
+    format_paragraph(p_inst, space_before=16, space_after=0, line_spacing=1.15)
     r_inst = p_inst.add_run(
-        "DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING\n"
-        "[ENTER COLLEGE NAME]\n"
-        "[ENTER COLLEGE LOCATION / AFFILIATION]\n"
-        "ACADEMIC YEAR: [ENTER ACADEMIC YEAR]"
+        "DEPARTMENT OF COMPUTER APPLICATIONS\n"
+        "RAM DEVI JINDAL GROUP OF COLLEGES, LALRU, DISTT. MOHALI\n"
+        "Affiliated to I.K. Gujral Punjab Technical University, Jalandhar\n"
+        "ACADEMIC SESSION: 2026-2027"
     )
     r_inst.font.name = 'Times New Roman'
-    r_inst.font.size = Pt(11.5)
+    r_inst.font.size = Pt(11)
     r_inst.font.bold = True
     r_inst.font.color.rgb = RGBColor(15, 23, 42)
 
@@ -145,25 +151,25 @@ def create_full_report():
     # 2. CERTIFICATE
     add_heading_1(doc, "CERTIFICATE OF APPROVAL")
     p_cert = doc.add_paragraph()
-    format_paragraph(p_cert, space_before=12, space_after=14, line_spacing=1.5)
+    format_paragraph(p_cert, space_before=10, space_after=12, line_spacing=1.4)
     r_c = p_cert.add_run(
         "This is to certify that the project report entitled \"TRAVEL TICKET BOOKING SYSTEM\" submitted by "
-        "[Enter Student Name] (Roll No: [Enter Roll Number]) in partial fulfillment of the requirements for the "
-        "award of the degree of Bachelor of Technology in Computer Science and Engineering / Bachelor of Computer "
-        "Applications at [Enter College Name], is an authentic record of bonafide project work carried out under my "
-        "guidance and supervision during the academic session [Enter Academic Year]."
+        "SHIVANI (Roll No: 2448361) in partial fulfillment of the requirements for the "
+        "award of the degree of Bachelor of Computer Applications (BCA) at Ram Devi Jindal Group of Colleges, "
+        "Lalru, Distt. Mohali (Affiliated to I.K. Gujral Punjab Technical University, Jalandhar), is an authentic record of bonafide project work carried out under my "
+        "guidance and supervision during the academic session 2026-2027."
     )
     r_c.font.name = 'Times New Roman'
-    r_c.font.size = Pt(12)
+    r_c.font.size = Pt(11.5)
 
     p_cert2 = doc.add_paragraph()
-    format_paragraph(p_cert2, space_before=6, space_after=36, line_spacing=1.5)
+    format_paragraph(p_cert2, space_before=4, space_after=28, line_spacing=1.4)
     r_c2 = p_cert2.add_run(
         "To the best of my knowledge, the matter embodied in this project report has not been submitted to any "
         "other University or Institute for the award of any degree or diploma."
     )
     r_c2.font.name = 'Times New Roman'
-    r_c2.font.size = Pt(12)
+    r_c2.font.size = Pt(11.5)
 
     sig_table = doc.add_table(rows=2, cols=3)
     sig_table.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -171,19 +177,23 @@ def create_full_report():
     for col in sig_table.columns:
         col.width = Inches(2.1)
 
-    sig_headers = ["[Enter Guide Name]", "Head of Department", "External Examiner"]
-    sig_desigs = ["Project Supervisor\nDept. of Computer Science", "HOD, Dept. of CSE\n[Enter College Name]", "External Examiner\nUniversity Nominee"]
+    sig_headers = ["MRS. JYOTI", "MISS MANISHA", "External Examiner"]
+    sig_desigs = [
+        "Project Supervisor\nDept. of Computer Applications",
+        "Head of Department (HOD)\nDept. of Computer Applications",
+        "External Examiner\nUniversity Nominee (IKGPTU)"
+    ]
 
     for i in range(3):
         c_top = sig_table.cell(0, i)
         c_bot = sig_table.cell(1, i)
         c_top.paragraphs[0].text = "____________________\n" + sig_headers[i]
         c_top.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-        c_top.paragraphs[0].runs[0].font.size = Pt(10.5)
+        c_top.paragraphs[0].runs[0].font.size = Pt(10)
         c_top.paragraphs[0].runs[0].font.bold = True
         c_bot.paragraphs[0].text = sig_desigs[i]
         c_bot.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-        c_bot.paragraphs[0].runs[0].font.size = Pt(9.5)
+        c_bot.paragraphs[0].runs[0].font.size = Pt(9)
         c_bot.paragraphs[0].runs[0].font.italic = True
 
     doc.add_page_break()
@@ -191,23 +201,23 @@ def create_full_report():
     # 3. DECLARATION
     add_heading_1(doc, "DECLARATION OF ORIGINALITY")
     p_dec = doc.add_paragraph()
-    format_paragraph(p_dec, space_before=12, space_after=14, line_spacing=1.5)
+    format_paragraph(p_dec, space_before=10, space_after=12, line_spacing=1.4)
     r_d = p_dec.add_run(
-        "I, [Enter Student Name], student of Bachelor of Technology in Computer Science & Engineering / Bachelor of Computer "
-        "Applications, Roll Number: [Enter Roll Number], hereby declare that the project entitled \"TRAVEL TICKET BOOKING SYSTEM\" "
-        "is an original piece of academic work undertaken by me under the supervision of [Enter Guide Name], Assistant Professor, "
-        "Department of Computer Science & Engineering, [Enter College Name]."
+        "I, SHIVANI, student of Bachelor of Computer Applications (BCA, 5th Semester), Roll Number: 2448361, "
+        "hereby declare that the project entitled \"TRAVEL TICKET BOOKING SYSTEM\" "
+        "is an original piece of academic work undertaken by me under the supervision of MRS. JYOTI, Assistant Professor, "
+        "Department of Computer Applications, Ram Devi Jindal Group of Colleges, Lalru, Distt. Mohali (Affiliated to I.K. Gujral Punjab Technical University, Jalandhar)."
     )
     r_d.font.name = 'Times New Roman'
-    r_d.font.size = Pt(12)
+    r_d.font.size = Pt(11.5)
 
     add_body_p(doc, "I further declare that this report represents my own ideas and analysis, and wherever other sources, reference works, or technical specifications have been cited, appropriate references and acknowledgements have been made. This work has not been previously submitted in part or full for the award of any other academic degree, diploma, or certificate at this or any other educational institution.")
 
     p_dsig = doc.add_paragraph()
-    format_paragraph(p_dsig, space_before=40, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.RIGHT)
-    r_dsig = p_dsig.add_run("______________________________\nSignature of Student\n[Enter Student Name]\nRoll No: [Enter Roll Number]\nDate: [Enter Submission Date]")
+    format_paragraph(p_dsig, space_before=30, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.RIGHT)
+    r_dsig = p_dsig.add_run("______________________________\nSignature of Student\nSHIVANI\nRoll No: 2448361\nClass & Sem: BCA, 5th Sem\nDate: 31st October 2026")
     r_dsig.font.name = 'Times New Roman'
-    r_dsig.font.size = Pt(11)
+    r_dsig.font.size = Pt(10.5)
     r_dsig.font.bold = True
 
     doc.add_page_break()
@@ -215,16 +225,16 @@ def create_full_report():
     # 4. ACKNOWLEDGEMENT
     add_heading_1(doc, "ACKNOWLEDGEMENT")
     add_body_p(doc, "The completion of this college project report and the implementation of the Travel Ticket Booking System would not have been possible without the invaluable guidance, constructive criticism, and encouragement extended by several individuals.")
-    add_body_p(doc, "First and foremost, I wish to express my deepest gratitude and sincere appreciation to my esteemed Project Guide, [Enter Guide Name], Assistant Professor, Department of Computer Science & Engineering, for their continuous support, technical mentorship, and patient reviews throughout the conceptualization, system design, and coding stages of this project.")
-    add_body_p(doc, "I also extend my heartfelt thanks to the Head of Department (HOD), [Enter Department], [Enter College Name], for granting access to the necessary computing facilities, internet resources, and laboratory infrastructure that facilitated the successful realization of this application.")
-    add_body_p(doc, "I express my sincere thanks to the Management and Director of [Enter College Name] for providing an academic environment that fosters innovation, practical problem-solving, and hands-on software development.")
+    add_body_p(doc, "First and foremost, I wish to express my deepest gratitude and sincere appreciation to my esteemed Project Guide, MRS. JYOTI, Assistant Professor, Department of Computer Applications, for her continuous support, technical mentorship, and patient reviews throughout the conceptualization, system design, and coding stages of this project.")
+    add_body_p(doc, "I also extend my heartfelt thanks to the Head of Department (HOD), MISS MANISHA, Department of Computer Applications, Ram Devi Jindal Group of Colleges, for granting access to the necessary computing facilities, internet resources, and laboratory infrastructure that facilitated the successful realization of this application.")
+    add_body_p(doc, "I express my sincere thanks to the Management and Director of Ram Devi Jindal Group of Colleges, Lalru, Distt. Mohali for providing an academic environment that fosters innovation, practical problem-solving, and hands-on software development.")
     add_body_p(doc, "Lastly, I am thankful to my family members and friends whose constant encouragement, constructive feedback during user interface testing, and moral support inspired me to bring this project to a successful conclusion.")
 
     p_asig = doc.add_paragraph()
-    format_paragraph(p_asig, space_before=30, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.RIGHT)
-    r_asig = p_asig.add_run("[Enter Student Name]\nRoll No: [Enter Roll Number]\nDepartment of Computer Science & Engineering\n[Enter College Name]")
+    format_paragraph(p_asig, space_before=24, space_after=4, line_spacing=1.2, align=WD_ALIGN_PARAGRAPH.RIGHT)
+    r_asig = p_asig.add_run("SHIVANI\nRoll No: 2448361\nBCA, 5th Semester\nDepartment of Computer Applications\nRam Devi Jindal Group of Colleges, Lalru, Distt. Mohali")
     r_asig.font.name = 'Times New Roman'
-    r_asig.font.size = Pt(11)
+    r_asig.font.size = Pt(10.5)
     r_asig.font.bold = True
 
     doc.add_page_break()
@@ -1069,23 +1079,22 @@ def create_full_report():
     doc.save(local_filename)
     print(f"[OK] Generated report in workspace: {local_filename}")
 
-    desktop_candidates = [
-        os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", local_filename),
-        os.path.join(os.path.expanduser("~"), "Desktop", local_filename),
-        r"C:\Users\vijay\OneDrive\Desktop\Travel_Ticket_Booking_System_Project_Report.docx"
+    desktop_names = [local_filename, "Travel_Ticket_Booking_System_Project_Report_Shivani.docx"]
+    desktop_dirs = [
+        os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop"),
+        os.path.join(os.path.expanduser("~"), "Desktop"),
+        r"C:\Users\vijay\OneDrive\Desktop"
     ]
-    copied = False
-    for dp in desktop_candidates:
-        if os.path.exists(os.path.dirname(dp)):
-            try:
-                shutil.copyfile(local_filename, dp)
-                print(f"[OK] Saved copy directly to Desktop: {dp}")
-                copied = True
-                break
-            except Exception as e:
-                print(f"[WARN] Could not copy to {dp}: {e}")
-    if not copied:
-        print("[WARN] Could not locate Desktop folder for automatic copy.")
+    for dname in desktop_names:
+        for ddir in desktop_dirs:
+            if os.path.exists(ddir):
+                target_path = os.path.join(ddir, dname)
+                try:
+                    shutil.copyfile(local_filename, target_path)
+                    print(f"[OK] Saved copy directly to Desktop: {target_path}")
+                    break
+                except Exception as e:
+                    pass
 
 if __name__ == "__main__":
     create_full_report()
