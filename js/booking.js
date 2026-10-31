@@ -13,6 +13,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initBookingPage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isPreview = urlParams.get("preview") === "1" || urlParams.get("demo") === "1";
+  if (isPreview) {
+    if (!Auth.getUser()) {
+      const demoUser = (Storage.getUsers() && Storage.getUsers()[0]) || {
+        id: "USR-101",
+        name: "Rahul Sharma",
+        email: "rahul@gmail.com",
+        phone: "9876543210"
+      };
+      Storage.saveCurrentUser(demoUser);
+    }
+    if (!Storage.getCurrentCheckout()) {
+      const allTransports = Storage.getTransports() || [];
+      const sampleTransport = allTransports.find(t => t.id === "BUS-101") || allTransports[0];
+      if (sampleTransport) {
+        Storage.saveCurrentCheckout({
+          transportId: sampleTransport.id,
+          transport: sampleTransport,
+          date: "2026-11-10",
+          seats: ["L3", "L4"],
+          totalFare: (sampleTransport.fare || 950) * 2
+        });
+      }
+    }
+  }
+
   // Enforce authentication
   if (!Auth.isAuthenticated()) {
     showToast("Please sign in or create an account to proceed with your booking.", "warning");

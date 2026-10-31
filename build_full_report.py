@@ -333,9 +333,10 @@ def create_full_report():
         ("    8.2 User Authentication & Registration", "51"),
         ("    8.3 Ticket Search Results & Filter Sidebar", "52"),
         ("    8.4 Interactive Visual Seat Selection", "53"),
-        ("    8.5 Booking Confirmation & History", "54"),
-        ("    8.6 Official Boarding Pass E-Ticket", "55"),
-        ("    8.7 Admin Analytics Dashboard & Fleet Control", "56"),
+        ("    8.5 Passenger Details Collection & Checkout", "54"),
+        ("    8.6 Passenger Booking History & Cancellation", "55"),
+        ("    8.7 Official Boarding Pass E-Ticket", "56"),
+        ("    8.8 Admin Analytics Dashboard & Fleet Control", "57"),
         ("CHAPTER 9: CONCLUSION AND FUTURE SCOPE", "57"),
         ("    9.1 Conclusion", "57"),
         ("    9.2 Limitations", "58"),
@@ -390,8 +391,9 @@ def create_full_report():
         ("Figure 8.4", "Live Ticket Search Results & Filter Sidebar Screenshot", "52"),
         ("Figure 8.5", "Interactive Visual Seat Layout & Fare Calculation Screenshot", "53"),
         ("Figure 8.6", "Passenger Details Collection & Payment Checkout Screenshot", "54"),
-        ("Figure 8.7", "Official Boarding Pass E-Ticket with QR Code Screenshot", "55"),
-        ("Figure 8.8", "Admin Analytics Dashboard & Real-Time Fleet Control Screenshot", "56")
+        ("Figure 8.7", "Passenger Booking History & Cancellation Management Screenshot", "55"),
+        ("Figure 8.8", "Official Boarding Pass E-Ticket with QR Code Screenshot", "56"),
+        ("Figure 8.9", "Admin Analytics Dashboard & Real-Time Fleet Control Screenshot", "57")
     ]
 
     fig_table = doc.add_table(rows=len(figures_list) + 1, cols=3)
@@ -994,17 +996,21 @@ def create_full_report():
     add_body_p(doc, "The visual seat selection canvas displays a 2+2 / 2+1 chassis with driver cabin, color-coded availability cues, seat chips, and a sticky fare summary.")
     add_figure_image(doc, "diagrams/screen_seats.png", "Figure 8.5: Interactive Visual Seat Layout & Real-Time Fare Calculator")
 
-    add_heading_2(doc, "8.5 Booking Confirmation & History")
+    add_heading_2(doc, "8.5 Passenger Details Collection & Simulated Checkout")
+    add_body_p(doc, "The checkout interface captures traveler demographic details, displays order summary with base fare, applicable GST, dynamic promo code discounts, and simulates instant digital payment confirmation.")
+    add_figure_image(doc, "diagrams/screen_checkout.png", "Figure 8.6: Passenger Details Collection & Simulated Checkout Interface")
+
+    add_heading_2(doc, "8.6 Passenger Booking History & Cancellation Management")
     add_body_p(doc, "The passenger booking history page allows travelers to review confirmed reservations, trigger 1-click cancellations with seat recycling, and view tickets.")
-    add_figure_image(doc, "diagrams/screen_mybookings.png", "Figure 8.6: Passenger Booking History & Cancellation Management")
+    add_figure_image(doc, "diagrams/screen_mybookings.png", "Figure 8.7: Passenger Booking History & Cancellation Management Interface")
 
-    add_heading_2(doc, "8.6 Official Boarding Pass E-Ticket")
+    add_heading_2(doc, "8.7 Official Boarding Pass E-Ticket")
     add_body_p(doc, "The generated electronic boarding pass showcases realistic perforated tear notches, passenger manifest details, and a high-contrast vector QR code.")
-    add_figure_image(doc, "diagrams/screen_ticket.png", "Figure 8.7: Official Boarding Pass E-Ticket with QR Code Verification")
+    add_figure_image(doc, "diagrams/screen_ticket.png", "Figure 8.8: Official Boarding Pass E-Ticket with QR Code Verification")
 
-    add_heading_2(doc, "8.7 Admin Analytics Dashboard & Fleet Management")
+    add_heading_2(doc, "8.8 Admin Analytics Dashboard & Fleet Management")
     add_body_p(doc, "The admin console features real-time KPI metric cards, HTML5 Canvas revenue trend bars, transport fleet management tools, and CSV report export.")
-    add_figure_image(doc, "diagrams/screen_admin.png", "Figure 8.8: Admin Analytics Dashboard & Fleet Management Console")
+    add_figure_image(doc, "diagrams/screen_admin.png", "Figure 8.9: Admin Analytics Dashboard & Fleet Management Console")
 
     doc.add_page_break()
 
@@ -1059,12 +1065,23 @@ def create_full_report():
     doc.save(local_filename)
     print(f"[OK] Generated report in workspace: {local_filename}")
 
-    desktop_path = r"C:\Users\vijay\Desktop\Travel_Ticket_Booking_System_Project_Report.docx"
-    try:
-        shutil.copyfile(local_filename, desktop_path)
-        print(f"[OK] Saved copy directly to Desktop: {desktop_path}")
-    except Exception as e:
-        print(f"[ERROR] Could not copy to Desktop: {e}")
+    desktop_candidates = [
+        os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop", local_filename),
+        os.path.join(os.path.expanduser("~"), "Desktop", local_filename),
+        r"C:\Users\vijay\OneDrive\Desktop\Travel_Ticket_Booking_System_Project_Report.docx"
+    ]
+    copied = False
+    for dp in desktop_candidates:
+        if os.path.exists(os.path.dirname(dp)):
+            try:
+                shutil.copyfile(local_filename, dp)
+                print(f"[OK] Saved copy directly to Desktop: {dp}")
+                copied = True
+                break
+            except Exception as e:
+                print(f"[WARN] Could not copy to {dp}: {e}")
+    if not copied:
+        print("[WARN] Could not locate Desktop folder for automatic copy.")
 
 if __name__ == "__main__":
     create_full_report()

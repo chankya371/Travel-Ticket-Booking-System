@@ -40,6 +40,11 @@ function initSeatSelection() {
   // Generate visual seat layout
   renderSeatLayout();
 
+  if (params.get("demo") === "1" || params.get("preview") === "1") {
+    toggleSeatSelection("L1");
+    toggleSeatSelection("L2");
+  }
+
   // Setup continue button
   const proceedBtn = document.getElementById("proceedToBookingBtn");
   if (proceedBtn) {

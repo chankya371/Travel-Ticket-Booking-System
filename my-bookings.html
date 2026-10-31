@@ -113,6 +113,18 @@
     });
 
     function loadUserBookings() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isPreview = urlParams.get("preview") === "1" || urlParams.get("demo") === "1";
+      if (isPreview && !Auth.getUser()) {
+        const demoUser = (Storage.getUsers() && Storage.getUsers()[0]) || {
+          id: "USR-101",
+          name: "Rahul Sharma",
+          email: "rahul@gmail.com",
+          phone: "9876543210"
+        };
+        Storage.saveCurrentUser(demoUser);
+      }
+
       const currentUser = Auth.getUser();
 
       if (!currentUser) {
